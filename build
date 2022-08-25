@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+set -x
+./build.sh
+java -jar node_modules/vnu-jar/build/dist/vnu.jar output/index.html
