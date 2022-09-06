@@ -2,7 +2,7 @@
 set -e
 set -x
 
-./build.sh
+./build
 
 cd output
 git init
