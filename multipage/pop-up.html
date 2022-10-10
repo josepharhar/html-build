@@ -1,0 +1,608 @@
+<!DOCTYPE html><html class=split lang=en-US-x-hixie><script src=/link-fixup.js defer=""></script><meta charset=utf-8><meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name=viewport><title>HTML Standard</title><meta content=#3c790a name=theme-color><link rel=stylesheet href=https://resources.whatwg.org/spec.css crossorigin=""><link rel=stylesheet href=https://resources.whatwg.org/standard.css crossorigin=""><link rel=stylesheet href=https://resources.whatwg.org/standard-shared-with-dev.css crossorigin=""><link rel=icon href=https://resources.whatwg.org/logo.svg crossorigin=""><link rel=stylesheet href=/styles.css crossorigin=""><script>
+   function toggleStatus(div) {
+     div.parentNode.classList.toggle('wrapped');
+   }
+   function setLinkFragment(link) {
+     link.hash = location.hash;
+   }
+  </script><body>
+  
+  <script async="" crossorigin="" src=/html-dfn.js></script>
+  <script data-file-issue-url=https://github.com/whatwg/html/issues/new async="" crossorigin="" src=https://resources.whatwg.org/file-issue.js></script>
+  
+  <header id=head class="head with-buttons">
+   <a href=https://whatwg.org/ class=logo><img width=100 alt=WHATWG crossorigin="" src=https://resources.whatwg.org/logo.svg height=100></a>
+   <hgroup><h1 class=allcaps>HTML</h1><h2 id=living-standard class="no-num no-toc">Living Standard — Last Updated <span class=pubdate>10 October 2022</span></h2></hgroup>
+   
+   
+
+   
+  </header>
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+  <nav><a href=dnd.html>← 6.10 Drag and drop</a> — <a href=./>Table of Contents</a> — <a href=browsers.html>7 Loading web pages →</a></nav><ol class=toc><li id=toc-editing><ol><li><a href=pop-up.html#the-popup-attribute><span class=secno>6.11</span> The <code>popup</code> attribute</a><ol><li><a href=pop-up.html#the-pop-up-target-attributes><span class=secno>6.11.1</span> The pop-up target attributes</a><li><a href=pop-up.html#pop-up-light-dismiss><span class=secno>6.11.2</span> Pop-up light dismiss</a><li><a href=pop-up.html#the-defaultopen-attribute><span class=secno>6.11.3</span> The <code>defaultopen</code> attribute</a><li><a href=pop-up.html#the-anchor-attribute><span class=secno>6.11.4</span> The <code>anchor</code> attribute</a></ol></ol></ol><h3 id=the-popup-attribute><span class=secno>6.11</span> The <code id=the-popup-attribute:attr-popup><a href=#attr-popup>popup</a></code> attribute<a href=#the-popup-attribute class=self-link></a></h3>
+
+  <p>All elements may have the <dfn data-dfn-for=html-global id=attr-popup data-dfn-type=element-attr><code>popup</code></dfn> content attribute set. When specified, the element won't be
+  rendered until it becomes shown, at which point it will be rendered on top of other page
+  content.</p>
+
+  <p>The <code id=the-popup-attribute:attr-popup-2><a href=#attr-popup>popup</a></code> attribute is an <a id=the-popup-attribute:enumerated-attribute href=common-microsyntaxes.html#enumerated-attribute>enumerated attribute</a>.
+  The following table lists the states for this attribute:</p>
+  <table><thead><tr><th>State
+     <th>Keywords
+     <th>Description
+   <tbody><tr><td rowspan=2><dfn id=attr-popup-auto-state>Auto state</dfn>
+     <td><dfn data-dfn-for=html-global/popup id=attr-popup-auto-keyword data-dfn-type=attr-value><code>auto</code></dfn>
+     <td rowspan=2>Closes other pop-ups when opened; has <a href=#pop-up-light-dismiss id=the-popup-attribute:pop-up-light-dismiss>light
+     dismiss</a>.
+    <tr><td>The empty string
+    <tr><td><dfn id=attr-popup-hint-state>Hint state</dfn>
+     <td><dfn data-dfn-for=html-global/popup id=attr-popup-hint-keyword data-dfn-type=attr-value><code>hint</code></dfn>
+     <td>Closes other hint pop-ups when opened; has <a href=#pop-up-light-dismiss id=the-popup-attribute:pop-up-light-dismiss-2>light
+     dismiss</a>.
+    <tr><td><dfn id=attr-popup-manual-state>Manual state</dfn>
+     <td><dfn data-dfn-for=html-global/popup id=attr-popup-manual-keyword data-dfn-type=attr-value><code>manual</code></dfn>
+     <td>Does not close other pop-ups; does not <a href=#pop-up-light-dismiss id=the-popup-attribute:pop-up-light-dismiss-3>light
+     dismiss</a>.
+  </table>
+
+  <p>The <dfn data-dfn-for=HTMLElement id=dom-popup data-dfn-type=attribute><code>popUp</code></dfn> IDL attribute
+  must <a id=the-popup-attribute:reflect href=common-dom-interfaces.html#reflect>reflect</a> the <a href=#attr-popup id=the-popup-attribute:attr-popup-3>popup</a> attribute.</p>
+
+  <p>The attribute may be omitted. The <i id=the-popup-attribute:invalid-value-default><a href=common-microsyntaxes.html#invalid-value-default>invalid value default</a></i>
+  and the <i id=the-popup-attribute:missing-value-default><a href=common-microsyntaxes.html#missing-value-default>missing value default</a></i> are both the <a href=#attr-popup-manual-state id=the-popup-attribute:attr-popup-manual-state>manual state</a>.
+
+  <p>When the <code id=the-popup-attribute:attr-popup-4><a href=#attr-popup>popup</a></code> attribute is not set on an element, then the
+  element's <code id=the-popup-attribute:attr-popup-5><a href=#attr-popup>popup</a></code> attribute is considered to be in the <dfn id=attr-popup-none-state>no pop-up state</dfn>.</p>
+
+  <p>Every element has a <dfn id=pop-up-visibility-state>pop-up visibility state</dfn> with these potential values:</p>
+
+  <ul><li><p><dfn id=pop-up-hidden-state>hidden</dfn><li><p><dfn id=pop-up-transitioning-state>transitioning</dfn><li><p><dfn id=pop-up-showing-state>showing</dfn></ul>
+
+  <div class=note>
+   <p>The <a href=#pop-up-visibility-state id=the-popup-attribute:pop-up-visibility-state>pop-up visibility</a> <a href=#pop-up-transitioning-state id=the-popup-attribute:pop-up-transitioning-state>transitioning state</a> and <code id=the-popup-attribute:selector-open><a href=semantics-other.html#selector-open>:open</a></code> pseudo selectors exist to allow pop-ups to animate open or
+   closed because animating between <code>display: none</code> and other
+   <a id="the-popup-attribute:'display'" href=https://drafts.csswg.org/css2/#display-prop data-x-internal="'display'">'display'</a> values is not possible.</p>
+  </div>
+
+  <div class=example>
+   <p>The following is an example of an animated pop-up:</p>
+
+   <pre><code class='html'><c- p>&lt;</c-><c- f>div</c-> <c- e>popup</c-><c- o>=</c-><c- s>&quot;auto&quot;</c-> <c- e>id</c-><c- o>=</c-><c- s>&quot;foo&quot;</c-><c- p>&gt;</c->
+  A fancy pop-up with no Javascript
+<c- p>&lt;/</c-><c- f>div</c-><c- p>&gt;</c->
+<c- p>&lt;</c-><c- f>style</c-><c- p>&gt;</c->
+  <c- o>[</c-><c- f>popup</c-><c- o>]</c-> <c- p>{</c->
+    <c- k>opacity</c-><c- p>:</c-> <c- mi>0</c-><c- p>;</c->
+    <c- k>transform</c-><c- p>:</c-> translate<c- p>(</c-><c- g>-100px</c-><c- p>,</c-><c- mi>100</c-><c- b>px</c-><c- p>);</c->
+    <c- k>transition</c-><c- p>:</c-> <c- kc>all</c-> <c- mf>1.5</c-><c- b>s</c-><c- p>;</c->
+  <c- p>}</c->
+  <c- o>[</c-><c- f>popup</c-><c- o>]</c-><c- p>:</c-><c- nd>open</c-> <c- p>{</c->
+    <c- k>transform</c-><c- p>:</c-> translate<c- p>(</c-><c- mi>0</c-><c- p>,</c-><c- mi>0</c-><c- p>);</c->
+    <c- k>opacity</c-><c- p>:</c-> <c- mi>1</c-><c- p>;</c->
+  <c- p>}</c->
+<c- p>&lt;/</c-><c- f>style</c-><c- p>&gt;</c-></code></pre>
+  </div>
+
+  <p>The <code id=the-popup-attribute:document><a href=dom.html#document>Document</a></code> has an <dfn id=auto-pop-up-stack>auto pop-up stack</dfn>, which is a <a id=the-popup-attribute:stack href=https://infra.spec.whatwg.org/#stack data-x-internal=stack>stack</a>,
+  initially empty.</p>
+
+  <p>The <code id=the-popup-attribute:document-2><a href=dom.html#document>Document</a></code> has a <dfn id=currently-showing-hint-pop-up>currently-showing hint pop-up</dfn>, which is an
+  <code id=the-popup-attribute:element><a data-x-internal=element href=https://dom.spec.whatwg.org/#interface-element>Element</a></code> or null, initially null.</p>
+
+  <p>The <code id=the-popup-attribute:document-3><a href=dom.html#document>Document</a></code> has <dfn id=pop-ups-waiting-to-hide>pop-ups waiting to hide</dfn>, which is a <a id=the-popup-attribute:set href=https://infra.spec.whatwg.org/#ordered-set data-x-internal=set>set</a>,
+  initially empty.</p>
+
+  <p>The <code id=the-popup-attribute:document-4><a href=dom.html#document>Document</a></code> has a <dfn id=pop-up-mousedown-target>pop-up mousedown target</dfn>, which is an
+  <code id=the-popup-attribute:element-2><a data-x-internal=element href=https://dom.spec.whatwg.org/#interface-element>Element</a></code> or null, initially null.</p>
+
+  <p>Every element has the following members:</p>
+
+  <ul><li><p>A <dfn id=pop-up-previously-focused-element>pop-up previously focused element</dfn>, which is an <code id=the-popup-attribute:element-3><a data-x-internal=element href=https://dom.spec.whatwg.org/#interface-element>Element</a></code> or null,
+   initially set to null.<li><p>A <dfn id=pop-up-invoker>pop-up invoker</dfn>, which is an <code id=the-popup-attribute:element-4><a data-x-internal=element href=https://dom.spec.whatwg.org/#interface-element>Element</a></code> or null, initially set to
+   null.<li><p><dfn id=waiting-to-hide-pop-up>Waiting to hide pop-up</dfn>, which is a boolean, initially set to false.</ul>
+
+  <p>The following <a href=https://dom.spec.whatwg.org/#concept-element-attributes-change-ext id=the-popup-attribute:concept-element-attributes-change-ext data-x-internal=concept-element-attributes-change-ext>attribute change steps</a>
+  are used for the <code id=the-popup-attribute:attr-popup-6><a href=#attr-popup>popup</a></code> attribute:</p>
+
+  <ol><li><p>If <var>localName</var> is not <code id=the-popup-attribute:attr-popup-7><a href=#attr-popup>popup</a></code>, then
+   return.<li><p>If <var>oldValue</var> is in the <a href=#attr-popup-none-state id=the-popup-attribute:attr-popup-none-state>no pop-up
+   state</a>, then return.<li><p>If <var>value</var> is not in the <a href=#attr-popup-none-state id=the-popup-attribute:attr-popup-none-state-2>no pop-up
+   state</a>, then return.<li><p>Run the <a href=#hide-pop-up-algorithm id=the-popup-attribute:hide-pop-up-algorithm>hide pop-up algorithm</a> given <var>element</var>, true, and
+   false.</ol>
+
+  <dl class=domintro><dt><code><var>element</var>.<a href=#dom-showpopup id=dom-showpopup-dev>showPopUp</a>()</code><dd>Shows the pop-up <var>element</var> by adding it to the top layer. If <var>element</var>'s
+   <code id=the-popup-attribute:attr-popup-8><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-auto-state id=the-popup-attribute:attr-popup-auto-state>auto state</a> or <a href=#attr-popup-hint-state id=the-popup-attribute:attr-popup-hint-state>hint
+   state</a>, then this will also close all other <a href=#attr-popup-auto-state id=the-popup-attribute:attr-popup-auto-state-2>auto</a> and <a href=#attr-popup-hint-state id=the-popup-attribute:attr-popup-hint-state-2>hint</a>
+   pop-ups unless they are an ancestor of <var>element</var> according to the <a href=#nearest-open-ancestral-pop-up id=the-popup-attribute:nearest-open-ancestral-pop-up>nearest open
+   ancestral pop-up</a> algorithm.<dt><code><var>element</var>.<a href=#dom-hidepopup id=dom-hidepopup-dev>hidePopUp</a>()</code><dd>Hides the pop-up <var>element</var> by removing it from the top layer and applying
+   <code>display: none</code> to it.</dl>
+
+  <p>The <dfn data-dfn-for=Element id=dom-showpopup data-dfn-type=method><code>showPopUp()</code></dfn> method steps
+  are:</p>
+
+  <ol><li><p>Run <a href=#show-pop-up id=the-popup-attribute:show-pop-up>show pop-up</a> given <a id=the-popup-attribute:this href=https://webidl.spec.whatwg.org/#this data-x-internal=this>this</a>.</ol>
+
+  <p>To <dfn id=show-pop-up>show pop-up</dfn>, given an <code id=the-popup-attribute:element-5><a data-x-internal=element href=https://dom.spec.whatwg.org/#interface-element>Element</a></code> <var>element</var>:</p>
+
+  <ol><li><p>If <var>element</var>'s <code id=the-popup-attribute:attr-popup-9><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-none-state id=the-popup-attribute:attr-popup-none-state-3>no pop-up state</a>, then throw a
+   <a id=the-popup-attribute:notsupportederror href=https://webidl.spec.whatwg.org/#notsupportederror data-x-internal=notsupportederror>"<code>NotSupportedError</code>"</a> <code id=the-popup-attribute:domexception><a data-x-internal=domexception href=https://webidl.spec.whatwg.org/#dfn-DOMException>DOMException</a></code>.<li><p>If <var>element</var>'s <a href=#pop-up-visibility-state id=the-popup-attribute:pop-up-visibility-state-2>pop-up visibility state</a> is not <a href=#pop-up-hidden-state id=the-popup-attribute:pop-up-hidden-state>hidden</a>, then throw a
+   <a id=the-popup-attribute:invalidstateerror href=https://webidl.spec.whatwg.org/#invalidstateerror data-x-internal=invalidstateerror>"<code>InvalidStateError</code>"</a> <code id=the-popup-attribute:domexception-2><a data-x-internal=domexception href=https://webidl.spec.whatwg.org/#dfn-DOMException>DOMException</a></code>.<li><p>If <var>element</var> is not <a id=the-popup-attribute:connected href=https://dom.spec.whatwg.org/#connected data-x-internal=connected>connected</a>, then throw a
+   <a id=the-popup-attribute:invalidstateerror-2 href=https://webidl.spec.whatwg.org/#invalidstateerror data-x-internal=invalidstateerror>"<code>InvalidStateError</code>"</a> <code id=the-popup-attribute:domexception-3><a data-x-internal=domexception href=https://webidl.spec.whatwg.org/#dfn-DOMException>DOMException</a></code>.<li><p>If the result of <a href=https://dom.spec.whatwg.org/#concept-event-fire id=the-popup-attribute:concept-event-fire data-x-internal=concept-event-fire>firing an event</a> named <code id=the-popup-attribute:event-popupshow-2><a href=indices.html#event-popupshow-2>popupshow</a></code> at <var>element</var> is false, then return.<li><p>If <var>element</var> is not <a id=the-popup-attribute:connected-2 href=https://dom.spec.whatwg.org/#connected data-x-internal=connected>connected</a>, then return.<li><p>If <var>element</var>'s <code id=the-popup-attribute:attr-popup-10><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-none-state id=the-popup-attribute:attr-popup-none-state-4>no pop-up state</a>, then return.<li>
+    <p>If <var>element</var>'s <a href=#pop-up-visibility-state id=the-popup-attribute:pop-up-visibility-state-3>pop-up visibility state</a> is <a href=#pop-up-showing-state id=the-popup-attribute:pop-up-showing-state>showing</a>, then return.</p>
+
+    <div class=note>
+     <p>These validity checks are repeated because firing the <code id=the-popup-attribute:event-popupshow-2-2><a href=indices.html#event-popupshow-2>popupshow</a></code> event could have disconnected this element or changed
+     its <code id=the-popup-attribute:attr-popup-11><a href=#attr-popup>popup</a></code> attribute.</p>
+    </div>
+   <li><p>Let <var>document</var> be <var>element</var>'s <a id=the-popup-attribute:node-document href=https://dom.spec.whatwg.org/#concept-node-document data-x-internal=node-document>node document</a>.<li><p>Let <var>shouldRestoreFocus</var> be false.<li>
+    <p>If <var>element</var>'s <code id=the-popup-attribute:attr-popup-12><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-hint-state id=the-popup-attribute:attr-popup-hint-state-3>hint state</a>, then:</p>
+
+    <ol><li><p>If <var>document</var>'s <a href=#currently-showing-hint-pop-up id=the-popup-attribute:currently-showing-hint-pop-up>currently-showing hint pop-up</a> is not null, then
+     run the <a href=#hide-pop-up-algorithm id=the-popup-attribute:hide-pop-up-algorithm-2>hide pop-up algorithm</a> given <var>document</var>'s <a href=#currently-showing-hint-pop-up id=the-popup-attribute:currently-showing-hint-pop-up-2>currently-showing
+     hint pop-up</a>, true, and false.<li><p>Let <var>ancestor</var> be the result of running the <a href=#nearest-open-ancestral-pop-up id=the-popup-attribute:nearest-open-ancestral-pop-up-2>nearest open ancestral
+     pop-up</a> algorithm given <var>element</var> and "<code>new-pop-up</code>".<li><p>If <var>ancestor</var> is not null, then run <a href=#hide-all-pop-ups-until id=the-popup-attribute:hide-all-pop-ups-until>hide
+     all pop-ups until</a> given <var>ancestor</var>, false, false, and true.</ol>
+   <li>
+    <p>If <var>element</var>'s <code id=the-popup-attribute:attr-popup-13><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-auto-state id=the-popup-attribute:attr-popup-auto-state-3>auto state</a>, then:</p>
+
+    <ol><li><p>Let <var>ancestor</var> be the result of running the <a href=#nearest-open-ancestral-pop-up id=the-popup-attribute:nearest-open-ancestral-pop-up-3>nearest open ancestral
+     pop-up</a> algorithm given <var>element</var> and "<code>new-pop-up</code>".<li><p>Run <a href=#hide-all-pop-ups-until id=the-popup-attribute:hide-all-pop-ups-until-2>hide all pop-ups until</a> given
+     <var>ancestor</var>, false, false, and true.</ol>
+   <li>
+    <p>If <var>element</var>'s <code id=the-popup-attribute:attr-popup-14><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-auto-state id=the-popup-attribute:attr-popup-auto-state-4>auto state</a> or in the <a href=#attr-popup-hint-state id=the-popup-attribute:attr-popup-hint-state-4>hint state</a>, then:</p>
+
+    <ol><li><p>If <var>element</var>'s <code id=the-popup-attribute:attr-popup-15><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-none-state id=the-popup-attribute:attr-popup-none-state-5>no pop-up state</a>, then return.<li><p>If <var>element</var>'s <a href=#pop-up-visibility-state id=the-popup-attribute:pop-up-visibility-state-4>pop-up visibility state</a> is not <a href=#pop-up-hidden-state id=the-popup-attribute:pop-up-hidden-state-2>hidden</a>, then return.<li>
+      <p>If <var>element</var> is not <a id=the-popup-attribute:connected-3 href=https://dom.spec.whatwg.org/#connected data-x-internal=connected>connected</a>, then return.</p>
+
+      <div class=note>
+       <p>These validity checks are repeated because running <a href=#hide-all-pop-ups-until id=the-popup-attribute:hide-all-pop-ups-until-3>hide all pop-ups until</a> above could have fired the
+       <code id=the-popup-attribute:event-popuphide-2><a href=indices.html#event-popuphide-2>popuphide</a></code> event, and an event handler could have
+       disconnected this element or changed its <code id=the-popup-attribute:attr-popup-16><a href=#attr-popup>popup</a></code>
+       attribute.</p>
+      </div>
+     <li>
+      <p>If the result of running <a href=#topmost-pop-up-auto-or-hint id=the-popup-attribute:topmost-pop-up-auto-or-hint>topmost pop-up auto or hint</a> on <var>document</var>
+      is null, then set <var>shouldRestoreFocus</var> to true. Otherwise, set
+      <var>shouldRestoreFocus</var> to false.</p>
+
+      <div class=note>
+       <p>This ensures that focus is returned to the previously-focused element only for the first
+       pop-up in a stack.</p>
+      </div>
+     </ol>
+   <li><p>If <var>element</var>'s <code id=the-popup-attribute:attr-popup-17><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-auto-state id=the-popup-attribute:attr-popup-auto-state-5>auto state</a>, then push <var>element</var> onto
+   <var>document</var>'s <a href=#auto-pop-up-stack id=the-popup-attribute:auto-pop-up-stack>auto pop-up stack</a>.<li><p>If <var>element</var>'s <code id=the-popup-attribute:attr-popup-18><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-hint-state id=the-popup-attribute:attr-popup-hint-state-5>hint state</a>, then set <var>document</var>'s
+   <a href=#currently-showing-hint-pop-up id=the-popup-attribute:currently-showing-hint-pop-up-3>currently-showing hint pop-up</a> to <var>element</var>.<li><p>Set <var>element</var>'s <a href=#waiting-to-hide-pop-up id=the-popup-attribute:waiting-to-hide-pop-up>waiting to hide pop-up</a> to false.<li><p>Set <var>element</var>'s <a href=#pop-up-previously-focused-element id=the-popup-attribute:pop-up-previously-focused-element>pop-up previously focused element</a> to null.<li><p>Let <var>originallyFocusedElement</var> be <var>document</var>'s <a id=the-popup-attribute:focused-area-of-the-document href=interaction.html#focused-area-of-the-document>focused area of the
+   document</a>.<li><p>Add <var>element</var> to <var>document</var>'s <a id=the-popup-attribute:top-layer href=https://fullscreen.spec.whatwg.org/#top-layer data-x-internal=top-layer>top layer</a>.<li><p>Set <var>element</var>'s <a href=#pop-up-visibility-state id=the-popup-attribute:pop-up-visibility-state-5>pop-up visibility state</a> to <a href=#pop-up-transitioning-state id=the-popup-attribute:pop-up-transitioning-state-2>transitioning</a>.<li><p>Recalculate styles and update layout for <var>document</var>.<li><p>Set <var>element</var>'s <a href=#pop-up-visibility-state id=the-popup-attribute:pop-up-visibility-state-6>pop-up visibility state</a> to <a href=#pop-up-showing-state id=the-popup-attribute:pop-up-showing-state-2>showing</a>.<li><p>Run the <a href=#pop-up-focusing-steps id=the-popup-attribute:pop-up-focusing-steps>pop-up focusing steps</a> given <var>element</var>.<li><p>If <var>shouldRestoreFocus</var> is true, <var>element</var>'s <code id=the-popup-attribute:attr-popup-19><a href=#attr-popup>popup</a></code> attribute is not in the <a href=#attr-popup-none-state id=the-popup-attribute:attr-popup-none-state-6>no
+   pop-up state</a>, and <var>originallyFocusedElement</var> is not the <a id=the-popup-attribute:focused href=interaction.html#focused>focused</a>
+   element, then set <var>element</var>'s <a href=#pop-up-previously-focused-element id=the-popup-attribute:pop-up-previously-focused-element-2>pop-up previously focused element</a> to
+   <var>originallyFocusedElement</var>.</ol>
+
+  <p>The <dfn data-dfn-for=Element id=dom-hidepopup data-dfn-type=method><code>hidePopUp()</code></dfn> method steps
+  are:</p>
+
+  <ol><li><p>If <a id=the-popup-attribute:this-2 href=https://webidl.spec.whatwg.org/#this data-x-internal=this>this</a>'s <code id=the-popup-attribute:attr-popup-20><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-none-state id=the-popup-attribute:attr-popup-none-state-7>no pop-up state</a>, then throw a
+   <a id=the-popup-attribute:notsupportederror-2 href=https://webidl.spec.whatwg.org/#notsupportederror data-x-internal=notsupportederror>"<code>NotSupportedError</code>"</a> <code id=the-popup-attribute:domexception-4><a data-x-internal=domexception href=https://webidl.spec.whatwg.org/#dfn-DOMException>DOMException</a></code>.<li><p>If <a id=the-popup-attribute:this-3 href=https://webidl.spec.whatwg.org/#this data-x-internal=this>this</a>'s <a href=#pop-up-visibility-state id=the-popup-attribute:pop-up-visibility-state-7>pop-up visibility state</a> is not <a href=#pop-up-showing-state id=the-popup-attribute:pop-up-showing-state-3>showing</a>, then throw a
+   <a id=the-popup-attribute:invalidstateerror-3 href=https://webidl.spec.whatwg.org/#invalidstateerror data-x-internal=invalidstateerror>"<code>InvalidStateError</code>"</a> <code id=the-popup-attribute:domexception-5><a data-x-internal=domexception href=https://webidl.spec.whatwg.org/#dfn-DOMException>DOMException</a></code>.<li><p>Run the <a href=#hide-pop-up-algorithm id=the-popup-attribute:hide-pop-up-algorithm-3>hide pop-up algorithm</a> given <a id=the-popup-attribute:this-4 href=https://webidl.spec.whatwg.org/#this data-x-internal=this>this</a>, true, and
+   false.</ol>
+
+  <p>To <dfn id=hide-pop-up-algorithm>hide a pop-up</dfn> given an <code id=the-popup-attribute:element-6><a data-x-internal=element href=https://dom.spec.whatwg.org/#interface-element>Element</a></code>
+  <var>element</var>, a boolean <var>focusPreviousElement</var>, and a boolean
+  <var>hideImmediately</var>:</p>
+
+  <ol><li><p>Let <var>document</var> be <var>element</var>'s <a id=the-popup-attribute:node-document-2 href=https://dom.spec.whatwg.org/#concept-node-document data-x-internal=node-document>node document</a>.<li>
+    <p>If <var>element</var>'s <code id=the-popup-attribute:attr-popup-21><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-auto-state id=the-popup-attribute:attr-popup-auto-state-6>auto state</a> or the <a href=#attr-popup-hint-state id=the-popup-attribute:attr-popup-hint-state-6>hint state</a>, then:</p>
+
+    <ol><li><p>Run <a href=#hide-all-pop-ups-until id=the-popup-attribute:hide-all-pop-ups-until-4>hide all pop-ups until</a> given
+     <var>element</var>, <var>focusPreviousElement</var>, <var>hideImmediately</var>, and
+     false.<li><p>If <var>element</var>'s <code id=the-popup-attribute:attr-popup-22><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-none-state id=the-popup-attribute:attr-popup-none-state-8>no pop-up state</a>, then return.<li><p>If <var>element</var> is not <a id=the-popup-attribute:connected-4 href=https://dom.spec.whatwg.org/#connected data-x-internal=connected>connected</a>, then return.<li>
+      <p>If <var>element</var>'s <a href=#pop-up-visibility-state id=the-popup-attribute:pop-up-visibility-state-8>pop-up visibility state</a> is not <a href=#pop-up-showing-state id=the-popup-attribute:pop-up-showing-state-4>showing</a>, then return.</p>
+
+      <div class=note>
+       <p>These validity checks are repeated because running <a href=#hide-all-pop-ups-until id=the-popup-attribute:hide-all-pop-ups-until-5>hide all pop-ups until</a> above could have fired the
+       <code id=the-popup-attribute:event-popuphide-2-2><a href=indices.html#event-popuphide-2>popuphide</a></code> event, and an event handler could have
+       disconnected this element or changed its <code id=the-popup-attribute:attr-popup-23><a href=#attr-popup>popup</a></code>
+       attribute.</p>
+      </div>
+     <li><p>If <var>element</var>'s <code id=the-popup-attribute:attr-popup-24><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-auto-state id=the-popup-attribute:attr-popup-auto-state-7>auto state</a>, then <a href=https://infra.spec.whatwg.org/#stack-pop id=the-popup-attribute:stack-pop data-x-internal=stack-pop>pop</a> from
+     <var>document</var>'s <a href=#auto-pop-up-stack id=the-popup-attribute:auto-pop-up-stack-2>auto pop-up stack</a>.<li><p>If <var>element</var>'s <code id=the-popup-attribute:attr-popup-25><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-hint-state id=the-popup-attribute:attr-popup-hint-state-7>hint state</a>, then set <var>document</var>'s
+     <a href=#currently-showing-hint-pop-up id=the-popup-attribute:currently-showing-hint-pop-up-4>currently-showing hint pop-up</a> to null.</ol>
+   <li><p>Add <var>element</var> to <var>document</var>'s <a href=#pop-ups-waiting-to-hide id=the-popup-attribute:pop-ups-waiting-to-hide>pop-ups waiting to
+   hide</a>.<li><p>Let <var>previousAnimations</var> be the set of all <a href=https://drafts.csswg.org/web-animations-1/#relevant-animation id=the-popup-attribute:relevant-animation data-x-internal=relevant-animation>relevant</a> <code id=the-popup-attribute:animation><a data-x-internal=animation href=https://drafts.csswg.org/web-animations-1/#animation>Animation</a></code> objects that contain at least one
+   <a id=the-popup-attribute:animation-effect href=https://drafts.csswg.org/web-animations-1/#animation-effect data-x-internal=animation-effect>animation effect</a> whose <a id=the-popup-attribute:effect-target href=https://drafts.csswg.org/web-animations-1/#effect-target data-x-internal=effect-target>effect target</a> is <var>element</var>.<li><p>Set <var>element</var>'s <a href=#pop-up-invoker id=the-popup-attribute:pop-up-invoker>pop-up invoker</a> to null.<li><p>Set <var>element</var>'s <a href=#pop-up-visibility-state id=the-popup-attribute:pop-up-visibility-state-9>pop-up visibility state</a> to <a href=#pop-up-transitioning-state id=the-popup-attribute:pop-up-transitioning-state-3>transitioning</a>.<li>
+    <p>If <var>hideImmediately</var> is true, then:</p>
+
+    <ol><li><p><a id=the-popup-attribute:queue-an-element-task href=webappapis.html#queue-an-element-task>Queue an element task</a> given <a id=the-popup-attribute:user-interaction-task-source href=webappapis.html#user-interaction-task-source>user interaction task source</a> and
+     <var>element</var> to <a href=https://dom.spec.whatwg.org/#concept-event-fire id=the-popup-attribute:concept-event-fire-2 data-x-internal=concept-event-fire>fire an event</a> named <code id=the-popup-attribute:event-popuphide-2-3><a href=indices.html#event-popuphide-2>popuphide</a></code> at <var>element</var>.<li><p>Run <a href=#pop-up-hide-finish-if-needed id=the-popup-attribute:pop-up-hide-finish-if-needed>pop-up hide finish if needed</a>
+     given <var>element</var>.<li><p>Return.</ol>
+   <li><p><a href=https://dom.spec.whatwg.org/#concept-event-fire id=the-popup-attribute:concept-event-fire-3 data-x-internal=concept-event-fire>Fire an event</a> named <code id=the-popup-attribute:event-popuphide-2-4><a href=indices.html#event-popuphide-2>popuphide</a></code> at <var>element</var>.<li><p>If <var>element</var> is not <a id=the-popup-attribute:connected-5 href=https://dom.spec.whatwg.org/#connected data-x-internal=connected>connected</a>, then return.<li><p>If <var>element</var>'s <code id=the-popup-attribute:attr-popup-26><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-none-state id=the-popup-attribute:attr-popup-none-state-9>no pop-up state</a>, then return.<li><p>If <var>element</var>'s <a href=#pop-up-visibility-state id=the-popup-attribute:pop-up-visibility-state-10>pop-up visibility state</a> is <a href=#pop-up-transitioning-state id=the-popup-attribute:pop-up-transitioning-state-4>transitioning</a>, then return.<li><p>Let <var>animations</var> be the set of all <a href=https://drafts.csswg.org/web-animations-1/#relevant-animation id=the-popup-attribute:relevant-animation-2 data-x-internal=relevant-animation>relevant</a> <code id=the-popup-attribute:animation-2><a data-x-internal=animation href=https://drafts.csswg.org/web-animations-1/#animation>Animation</a></code> objects that contain at least one
+   <a id=the-popup-attribute:animation-effect-2 href=https://drafts.csswg.org/web-animations-1/#animation-effect data-x-internal=animation-effect>animation effect</a> whose <a id=the-popup-attribute:effect-target-2 href=https://drafts.csswg.org/web-animations-1/#effect-target data-x-internal=effect-target>effect target</a> is <var>element</var>.<li><p>Remove all items in <var>animations</var> which exist in
+   <var>previousAnimations</var>.<li><p>If <var>animations</var> is empty, then run <a href=#pop-up-hide-finish-if-needed id=the-popup-attribute:pop-up-hide-finish-if-needed-2>pop-up hide finish if needed</a> given
+   <var>element</var>.<li><p>Let <var>previouslyFocusedElement</var> be <var>element</var>'s <a id=the-popup-attribute:previously-focused-element href=interactive-elements.html#previously-focused-element>previously focused
+   element</a>.<li>
+    <p>If <var>previouslyFocusedElement</var> is not null, then:</p>
+
+    <ol><li><p>Set <var>element</var>'s <a id=the-popup-attribute:previously-focused-element-2 href=interactive-elements.html#previously-focused-element>previously focused element</a> to null.<li><p>If <var>focusPreviousElement</var> is true, then run the <a id=the-popup-attribute:focusing-steps href=interaction.html#focusing-steps>focusing steps</a> for
+     <var>previouslyFocusedElement</var>.</ol>
+   <li>
+    <p>If <var>animations</var> is not empty, then run these steps <a id=the-popup-attribute:in-parallel href=infrastructure.html#in-parallel>in parallel</a>:</p>
+
+    <ol><li><p>Set <var>element</var>'s <a href=#waiting-to-hide-pop-up id=the-popup-attribute:waiting-to-hide-pop-up-2>waiting to hide pop-up</a> to true.<li><p>Wait for each animation in <var>animations</var> to resolve as either <a href=https://drafts.csswg.org/web-animations-1/#canceling-an-animation-section id=the-popup-attribute:canceling-an-animation data-x-internal=canceling-an-animation>canceled</a> or <a href=https://drafts.csswg.org/web-animations-1/#finishing-an-animation-section id=the-popup-attribute:finishing-an-animation data-x-internal=finishing-an-animation>finished</a>.<li><p>If <var>element</var>'s <a href=#waiting-to-hide-pop-up id=the-popup-attribute:waiting-to-hide-pop-up-3>waiting to hide pop-up</a> is true, then run <a href=#pop-up-hide-finish-if-needed id=the-popup-attribute:pop-up-hide-finish-if-needed-3>pop-up hide finish if needed</a> given
+     <var>element</var>.</ol>
+   </ol>
+
+  <p>To <dfn id=pop-up-hide-finish-if-needed>finish hiding a pop-up if needed</dfn>, given an
+  <code id=the-popup-attribute:element-7><a data-x-internal=element href=https://dom.spec.whatwg.org/#interface-element>Element</a></code> <var>element</var>:</p>
+
+  <ol><li><p>Remove <var>element</var> from <var>element</var>'s <a id=the-popup-attribute:node-document-3 href=https://dom.spec.whatwg.org/#concept-node-document data-x-internal=node-document>node document</a>'s
+   <a href=#pop-ups-waiting-to-hide id=the-popup-attribute:pop-ups-waiting-to-hide-2>pop-ups waiting to hide</a>.<li><p>Remove <var>element</var> from the <a id=the-popup-attribute:top-layer-2 href=https://fullscreen.spec.whatwg.org/#top-layer data-x-internal=top-layer>top layer</a>.<li><p>Set <var>element</var>'s <a href=#pop-up-visibility-state id=the-popup-attribute:pop-up-visibility-state-11>pop-up visibility state</a> to <a href=#pop-up-hidden-state id=the-popup-attribute:pop-up-hidden-state-3>hidden</a>.<li><p>Set <var>element</var>'s <a href=#waiting-to-hide-pop-up id=the-popup-attribute:waiting-to-hide-pop-up-4>waiting to hide pop-up</a> to false.</ol>
+
+  <p>To <dfn id=hide-all-pop-ups-until>hide all pop-ups until</dfn>, given an
+  <code id=the-popup-attribute:element-8><a data-x-internal=element href=https://dom.spec.whatwg.org/#interface-element>Element</a></code> <var>endpoint</var>, a boolean <var>focusPreviousElement</var>, a boolean
+  <var>hideImmediately</var>, and a boolean <var>hideUnrelated</var>:</p>
+
+  <ol><li><p>Let <var>document</var> be <var>endpoint</var>'s <a id=the-popup-attribute:node-document-4 href=https://dom.spec.whatwg.org/#concept-node-document data-x-internal=node-document>node document</a>.<li>
+    <p>If <var>hideImmediately</var> is true, then:</p>
+
+    <ol><li>
+      <p>For each <var>elementWaitingToHide</var> in <var>document</var>'s <a href=#pop-ups-waiting-to-hide id=the-popup-attribute:pop-ups-waiting-to-hide-3>pop-ups waiting to
+      hide</a>:</p>
+
+      <ol><li><p>Run <a href=#pop-up-hide-finish-if-needed id=the-popup-attribute:pop-up-hide-finish-if-needed-4>pop-up hide finish if needed</a>
+       given <var>elementWaitingToHide</var>.</ol>
+     <li><p>Clear <var>document</var>'s <a href=#pop-ups-waiting-to-hide id=the-popup-attribute:pop-ups-waiting-to-hide-4>pop-ups waiting to hide</a>.</ol>
+   <li>
+    <p>If <var>endpoint</var>'s <code id=the-popup-attribute:attr-popup-27><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-hint-state id=the-popup-attribute:attr-popup-hint-state-8>hint state</a> and <var>hideUnrelated</var> is true, then:</p>
+
+    <ol><li><p>If <var>document</var>'s <a href=#currently-showing-hint-pop-up id=the-popup-attribute:currently-showing-hint-pop-up-5>currently-showing hint pop-up</a> is not equal to
+     <var>endpoint</var>, then run the <a href=#hide-pop-up-algorithm id=the-popup-attribute:hide-pop-up-algorithm-4>hide pop-up algorithm</a> given <var>endpoint</var>,
+     <var>focusPreviousElement</var>, and <var>hideImmediately</var>.<li>
+      <p>While <var>document</var>'s <a href=#auto-pop-up-stack id=the-popup-attribute:auto-pop-up-stack-3>auto pop-up stack</a> is not empty:</p>
+
+      <ol><li><p>Run the <a href=#hide-pop-up-algorithm id=the-popup-attribute:hide-pop-up-algorithm-5>hide pop-up algorithm</a> given <var>endpoint</var>,
+       <var>focusPreviousElement</var>, and <var>hideImmediately</var>.</ol>
+     </ol>
+   <li>
+    <p>If <var>endpoint</var>'s <code id=the-popup-attribute:attr-popup-28><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-auto-state id=the-popup-attribute:attr-popup-auto-state-8>auto state</a> or <var>endpoint</var> is null, then:</p>
+
+    <ol><li><p>Let <var>hintAncestor</var> be null.<li>
+      <p>If <var>document's</var> <a href=#currently-showing-hint-pop-up id=the-popup-attribute:currently-showing-hint-pop-up-6>currently-showing hint pop-up</a> is not null, then:</p>
+
+      <ol><li><p>Let <var>hintAncestor</var> be the result of running the <a href=#nearest-open-ancestral-pop-up id=the-popup-attribute:nearest-open-ancestral-pop-up-4>nearest open ancestral
+       pop-up</a> algorithm given <var>document</var>'s <a href=#currently-showing-hint-pop-up id=the-popup-attribute:currently-showing-hint-pop-up-7>currently-showing hint
+       pop-up</a> and "<code>default</code>"<li><p>If <var>hintAncestor</var> is null and <var>hideUnrelated</var> is true, then run the
+       <a href=#hide-pop-up-algorithm id=the-popup-attribute:hide-pop-up-algorithm-6>hide pop-up algorithm</a> given <var>document</var>'s <a href=#currently-showing-hint-pop-up id=the-popup-attribute:currently-showing-hint-pop-up-8>currently-showing hint
+       pop-up</a>, <var>focusPreviousElement</var> and <var>hideImmediately</var>.</ol>
+     <li>
+      <p><a id=the-popup-attribute:while href=https://infra.spec.whatwg.org/#iteration-while data-x-internal=while>While</a> <var>document</var>'s <a href=#auto-pop-up-stack id=the-popup-attribute:auto-pop-up-stack-4>auto pop-up stack</a> is not empty:</p>
+
+      <ol><li><p>If <var>document</var>'s <a href=#auto-pop-up-stack id=the-popup-attribute:auto-pop-up-stack-5>auto pop-up stack</a>'s top element is
+       <var>hintAncestor</var>, then run the <a href=#hide-pop-up-algorithm id=the-popup-attribute:hide-pop-up-algorithm-7>hide pop-up algorithm</a> given
+       <var>document</var>'s <a href=#currently-showing-hint-pop-up id=the-popup-attribute:currently-showing-hint-pop-up-9>currently-showing hint pop-up</a>,
+       <var>focusPreviousElement</var> and <var>hideImmediately</var>.<li><p>If <var>document</var>'s <a href=#auto-pop-up-stack id=the-popup-attribute:auto-pop-up-stack-6>auto pop-up stack</a>'s top element is equal to
+       <var>endpoint</var>, then <a id=the-popup-attribute:break href=https://infra.spec.whatwg.org/#iteration-break data-x-internal=break>break</a>.<li><p>Run the <a href=#hide-pop-up-algorithm id=the-popup-attribute:hide-pop-up-algorithm-8>hide pop-up algorithm</a> given <var>document</var>'s <a href=#auto-pop-up-stack id=the-popup-attribute:auto-pop-up-stack-7>auto
+       pop-up stack</a>'s top element, <var>focusPreviousElement</var>, and
+       <var>hideImmediately</var>.</ol>
+     </ol>
+   </ol>
+
+  <div class=note>
+   <p>The <a href=#hide-all-pop-ups-until id=the-popup-attribute:hide-all-pop-ups-until-6>hide all pop-ups until algorithm</a> is used in
+   several cases to hide all pop-ups that don't stay open when something happens. For example,
+   during light-dismiss of a pop-up, this algorithm ensures that we close only the pop-ups that
+   aren't related to the node clicked by the user. The interaction between <code><a href=#attr-popup id=the-popup-attribute:attr-popup-29>popup</a>=<a href=#attr-popup-auto-state id=the-popup-attribute:attr-popup-auto-state-9>auto</a></code> and
+   <code><a href=#attr-popup id=the-popup-attribute:attr-popup-30>popup</a>=<a href=#attr-popup-hint-state id=the-popup-attribute:attr-popup-hint-state-9>hint</a></code> is captured here, where a <code><a href=#attr-popup id=the-popup-attribute:attr-popup-31>popup</a>=<a href=#attr-popup-hint-state id=the-popup-attribute:attr-popup-hint-state-10>hint</a></code> that is
+   "nested" inside a <code><a href=#attr-popup id=the-popup-attribute:attr-popup-32>popup</a>=<a href=#attr-popup-auto-state id=the-popup-attribute:attr-popup-auto-state-10>auto</a></code> is only hidden at the appropriate time.</p>
+  </div>
+
+  <p>To <dfn id=nearest-open-ancestral-pop-up>find the nearest open ancestral pop-up</dfn>,
+  given a <code id=the-popup-attribute:node><a data-x-internal=node href=https://dom.spec.whatwg.org/#interface-node>Node</a></code> <var>node</var> and a string <var>ancestorType</var>, perform the
+  following steps. They return an <code id=the-popup-attribute:element-9><a data-x-internal=element href=https://dom.spec.whatwg.org/#interface-element>Element</a></code> or null.</p>
+
+  <ol><li><p>Let <var>document</var> be <var>node</var>'s <a id=the-popup-attribute:node-document-5 href=https://dom.spec.whatwg.org/#concept-node-document data-x-internal=node-document>node document</a>.<li><p>Let <var>hintShowing</var> be <var>document</var>'s <a href=#currently-showing-hint-pop-up id=the-popup-attribute:currently-showing-hint-pop-up-10>currently-showing hint
+   pop-up</a>.<li><p>Let <var>anchorsToPopUps</var> be an empty <a id=the-popup-attribute:the-map-element href=image-maps.html#the-map-element>map</a>.<li>
+    <p>For each <var>popUp</var> in <var>document</var>'s <a href=#auto-pop-up-stack id=the-popup-attribute:auto-pop-up-stack-8>auto pop-up stack</a>:</p>
+
+    <ol><li><p>Let <var>anchor</var> be the result of <a href=#pop-up-anchor-element id=the-popup-attribute:pop-up-anchor-element>getting the
+     pop-up anchor element</a> of <var>popUp</var>.<li><p>If <var>anchor</var> is not null, then <a href=https://infra.spec.whatwg.org/#map-set id=the-popup-attribute:map-set data-x-internal=map-set>set</a>
+     <var>anchorsToPopUps</var>[<var>anchor</var>] to <var>popUp</var>.</ol>
+   <li>
+    <p>If <var>hintShowing</var> is not null, then:</p>
+
+    <ol><li><p>Let <var>anchor</var> be the result of running <a href=#pop-up-anchor-element id=the-popup-attribute:pop-up-anchor-element-2>getting the pop-up anchor element</a> of
+     <var>hintShowing</var>.<li><p>If <var>anchor</var> is not null, then <a href=https://infra.spec.whatwg.org/#map-set id=the-popup-attribute:map-set-2 data-x-internal=map-set>set</a>
+     <var>anchorsToPopUps</var>[<var>anchor</var>] to <var>hintShowing</var>.</ol>
+   <li><p>Let <var>popUpPositions</var> be an empty <a id=the-popup-attribute:the-map-element-2 href=image-maps.html#the-map-element>map</a>.<li><p>Let <var>index</var> be 0.<li>
+    <p>For each <var>popUp</var> in <var>document</var>'s <a href=#auto-pop-up-stack id=the-popup-attribute:auto-pop-up-stack-9>auto pop-up stack</a>:</p>
+
+    <ol><li><p><a href=https://infra.spec.whatwg.org/#map-set id=the-popup-attribute:map-set-3 data-x-internal=map-set>Set</a> <var>popUpPositions</var>[<var>popUp</var>] to
+     <var>index</var>.<li><p>Increment <var>index</var> by 1.</ol>
+   <li>
+    <p>If <var>hintShowing</var> is not null, then:</p>
+
+    <ol><li><p><a href=https://infra.spec.whatwg.org/#map-set id=the-popup-attribute:map-set-4 data-x-internal=map-set>Set</a> <var>popUpPositions</var>[<var>hintShowing</var>] to
+     <var>index</var>.<li><p>Increment <var>index</var> by 1.</ol>
+   <li>
+    <p>If <var>ancestorType</var> is "<code>new-pop-up</code>", then:</p>
+
+    <ol><li><p><a href=https://infra.spec.whatwg.org/#map-set id=the-popup-attribute:map-set-5 data-x-internal=map-set>Set</a> <var>popUpPositions</var>[<var>node</var>] to
+     <var>index</var>.</ol>
+   <li><p>Let <var>upperBound</var> be 2147483647.<li><p>If <var>popUpPositions</var>[<var>node</var>] exists, then set <var>upperBound</var> to
+   <var>popUpPositions</var>[<var>node</var>].<li><p>If <var>hintShowing</var> is not null and <var>ancestorType</var> is "<code>new-pop-up</code>", then set <var>upperBound</var> to
+   <var>popUpPositions</var>[<var>hintShowing</var>].<li>
+    <p>If <var>ancestorType</var> is "<code>inclusive</code>", then:</p>
+
+    <ol><li><p>Let <var>currentNode</var> be <var>node</var>.<li>
+      <p>While <var>currentNode</var> has a parent node within the <a id=the-popup-attribute:flat-tree href=https://drafts.csswg.org/css-scoping/#flat-tree data-x-internal=flat-tree>flat tree</a>:</p>
+
+      <ol><li>
+        <p>If <var>currentNode</var>'s <code id=the-popup-attribute:attr-popup-33><a href=#attr-popup>popup</a></code> attribute is not in
+        the <a href=#attr-popup-none-state id=the-popup-attribute:attr-popup-none-state-10>no pop-up state</a> and <var>currentNode</var>'s
+        <a href=#pop-up-visibility-state id=the-popup-attribute:pop-up-visibility-state-12>pop-up visibility state</a> is <a href=#pop-up-showing-state id=the-popup-attribute:pop-up-showing-state-5>showing</a>
+        and <var>currentNode</var>'s <code id=the-popup-attribute:attr-popup-34><a href=#attr-popup>popup</a></code> attribute is not in the
+        <a href=#attr-popup-manual-state id=the-popup-attribute:attr-popup-manual-state-2>manual state</a>, then:</p>
+
+        <ol><li><p>If <var>popUpPositions</var>[<var>currentNode</var>] + 1 is greater than
+         <var>upperBound</var>, then set <var>upperBound</var> to
+         <var>popUpPositions</var>[<var>currentNode</var>] + 1.</ol>
+       <li><p>Let <var>targetPopUp</var> be <var>currentNode</var>'s <a href=#pop-up-target-element id=the-popup-attribute:pop-up-target-element>pop-up target
+       element</a>.<li>
+        <p>If <var>targetPopUp</var>'s <code id=the-popup-attribute:attr-popup-35><a href=#attr-popup>popup</a></code> attribute is not
+        null and <var>targetPopUp</var>'s <a href=#pop-up-visibility-state id=the-popup-attribute:pop-up-visibility-state-13>pop-up visibility state</a> is <a href=#pop-up-showing-state id=the-popup-attribute:pop-up-showing-state-6>showing</a> and <var>targetPopUp</var>'s <code id=the-popup-attribute:attr-popup-36><a href=#attr-popup>popup</a></code> attribute is not in the <a href=#attr-popup-manual-state id=the-popup-attribute:attr-popup-manual-state-3>manual state</a>, then:</p>
+
+        <ol><li><p>If <var>popUpPositions</var>[<var>targetPopUp</var>] + 1 is greater than
+         <var>upperBound</var>, then set <var>upperBound</var> to
+         <var>popUpPositions</var>[<var>targetPopUp</var>] + 1.</ol>
+       <li><p>Set <var>currentNode</var> to the parent node of <var>currentNode</var> within the
+       <a id=the-popup-attribute:flat-tree-2 href=https://drafts.csswg.org/css-scoping/#flat-tree data-x-internal=flat-tree>flat tree</a>.</ol>
+     </ol>
+   <li><p>Let <var>seen</var> be an empty <a id=the-popup-attribute:set-2 href=https://infra.spec.whatwg.org/#ordered-set data-x-internal=set>set</a>.<li><p>Return the result of finding the <a href=#nearest-open-ancestral-pop-up-recursive id=the-popup-attribute:nearest-open-ancestral-pop-up-recursive>nearest open ancestral pop-up recursively</a>
+   given <var>node</var>, <var>popUpPositions</var>, <var>anchorsToPopUps</var>,
+   <var>upperBound</var>, and <var>seen</var>.</ol>
+
+  <p>To <dfn id=nearest-open-ancestral-pop-up-recursive>find the nearest open ancestral pop-up
+  recursively</dfn>, given a <code id=the-popup-attribute:node-2><a data-x-internal=node href=https://dom.spec.whatwg.org/#interface-node>Node</a></code> <var>node</var>, a <a id=the-popup-attribute:the-map-element-3 href=image-maps.html#the-map-element>map</a>
+  <var>popUpPositions</var>, a map <var>anchorsToPopUps</var>, an integer <var>upperBound</var>,
+  and a <a id=the-popup-attribute:set-3 href=https://infra.spec.whatwg.org/#ordered-set data-x-internal=set>set</a> <var>seen</var>, perform the following steps. They return an
+  <code id=the-popup-attribute:element-10><a data-x-internal=element href=https://dom.spec.whatwg.org/#interface-element>Element</a></code> or null.</p>
+
+  <ol><li><p>If <var>node</var> is null, then return null.<li><p>If <var>seen</var> contains <var>node</var>, then return null.<li><p>Add <var>node</var> to <var>seen</var>.<li><p>Let <var>ancestor</var> be null.<li><p>Let <var>position</var> be −1.<li>
+    <p>Let <var>update</var> be an algorithm which performs the following steps given
+    <var>popUp</var>:</p>
+
+    <ol><li>
+      <p>If <var>popUp</var> is not null and <var>popUp</var>'s <a href=#pop-up-visibility-state id=the-popup-attribute:pop-up-visibility-state-14>pop-up visibility state</a>
+      is not <a href=#pop-up-showing-state id=the-popup-attribute:pop-up-showing-state-7>showing</a> and <var>popUp</var>'s <code id=the-popup-attribute:attr-popup-37><a href=#attr-popup>popup</a></code> attribute is not in the <a href=#attr-popup-manual-state id=the-popup-attribute:attr-popup-manual-state-4>manual state</a>, then:</p>
+
+      <ol><li><p>Let <var>newPosition</var> be <var>popUpPositions</var>[<var>popUp</var>].<li>
+        <p>If <var>newPosition</var> is greater than <var>position</var> and <var>newPosition</var>
+        is less than <var>upperBound</var>, then:</p>
+
+        <ol><li><p>Set <var>ancestor</var> to <var>popUp</var>.<li><p>Set <var>position</var> to <var>newPosition</var>.</ol>
+       </ol>
+     </ol>
+   <li>
+    <p>Let <var>recurseAndUpdate</var> be an algorithm which performs the following steps given
+    <var>node</var>:</p>
+
+    <ol><li><p>Let <var>nearestOpenAncestor</var> be the result of finding the <a href=#nearest-open-ancestral-pop-up-recursive id=the-popup-attribute:nearest-open-ancestral-pop-up-recursive-2>nearest open ancestral pop-up
+     recursively</a> given <var>node</var>, <var>popUpPositions</var>,
+     <var>anchorsToPopUps</var>, <var>upperBound</var>, and <var>seen</var>.<li><p>Run <var>update</var> given <var>nearestOpenAncestor</var>.</ol>
+   <li><p>Run <var>update</var> given <var>node</var>.<li>
+    <p>If <var>popUpPositions</var>[<var>node</var>] exists, then:</p>
+
+    <ol><li><p>Run <var>recurseAndUpdate</var> given <var>node</var>'s <a href=#pop-up-anchor-element id=the-popup-attribute:pop-up-anchor-element-3>pop-up anchor element</a>.<li><p>Run <var>recurseAndUpdate</var> given <var>node</var>'s <a href=#pop-up-invoker id=the-popup-attribute:pop-up-invoker-2>pop-up
+     invoker</a>.</ol>
+   <li><p>If <var>node</var> has a <a href=#pop-up-target-element id=the-popup-attribute:pop-up-target-element-2>pop-up target element</a>, then run
+   <var>recurseAndUpdate</var> given <var>node</var>'s <a href=#pop-up-target-element id=the-popup-attribute:pop-up-target-element-3>pop-up target element</a>.<li><p>If <var>anchorsToPopUps</var>[<var>node</var>] exists, then run
+   <var>recurseAndUpdate</var> given <var>anchorsToPopUps</var>[<var>node</var>].<li><p>Run <var>recurseAndUpdate</var> given <var>node</var>'s parent node in the <a id=the-popup-attribute:flat-tree-3 href=https://drafts.csswg.org/css-scoping/#flat-tree data-x-internal=flat-tree>flat
+   tree</a>.<li><p>Return <var>ancestor</var>.</ol>
+
+  <p>To <dfn id=pop-up-anchor-element>get the pop-up anchor element</dfn> of an
+  <code id=the-popup-attribute:element-11><a data-x-internal=element href=https://dom.spec.whatwg.org/#interface-element>Element</a></code> <var>element</var>, perform the following steps. They return an
+  <code id=the-popup-attribute:element-12><a data-x-internal=element href=https://dom.spec.whatwg.org/#interface-element>Element</a></code> or null.</p>
+
+  <ol><li><p>If <var>element</var>'s <code id=the-popup-attribute:attr-popup-38><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-none-state id=the-popup-attribute:attr-popup-none-state-11>no pop-up state</a>, then return null.<li><p>Let <var>anchorAttribute</var> be the result of running <a id=the-popup-attribute:get-an-attribute-by-name href=https://dom.spec.whatwg.org/#concept-element-attributes-get-by-name data-x-internal=get-an-attribute-by-name>get an attribute by
+   name</a> given <var>element</var> and <code id=the-popup-attribute:attr-anchor><a href=#attr-anchor>anchor</a></code>.<li><p>If <var>anchorAttribute</var> is null, then return null.<li><p>Return the first <a href=https://dom.spec.whatwg.org/#concept-element id=the-popup-attribute:concept-element data-x-internal=concept-element>element</a>, in <a id=the-popup-attribute:tree-order href=https://dom.spec.whatwg.org/#concept-tree-order data-x-internal=tree-order>tree
+   order</a>, within <var>element</var>'s <a id=the-popup-attribute:root href=https://dom.spec.whatwg.org/#concept-tree-root data-x-internal=root>root</a>'s <a href=https://dom.spec.whatwg.org/#concept-tree-descendant id=the-popup-attribute:descendant data-x-internal=descendant>descendants</a>, whose <a href=https://dom.spec.whatwg.org/#concept-id id=the-popup-attribute:concept-id data-x-internal=concept-id>ID</a> is
+   <var>anchorAttribute</var>; otherwise, if there is no such <a href=https://dom.spec.whatwg.org/#concept-element id=the-popup-attribute:concept-element-2 data-x-internal=concept-element>element</a>, null.</ol>
+
+  <p>To <dfn id=topmost-pop-up-auto-or-hint>find the topmost pop-up auto or hint</dfn> given a
+  <code id=the-popup-attribute:document-5><a href=dom.html#document>Document</a></code> <var>document</var>, perform the following steps. They return an
+  <code id=the-popup-attribute:element-13><a data-x-internal=element href=https://dom.spec.whatwg.org/#interface-element>Element</a></code> or null.</p>
+
+  <ol><li><p>If <var>document</var>'s <a href=#currently-showing-hint-pop-up id=the-popup-attribute:currently-showing-hint-pop-up-11>currently-showing hint pop-up</a> is not null, then return
+   <var>document</var>'s <a href=#currently-showing-hint-pop-up id=the-popup-attribute:currently-showing-hint-pop-up-12>currently-showing hint pop-up</a>.<li><p>If <var>document</var>'s <a href=#auto-pop-up-stack id=the-popup-attribute:auto-pop-up-stack-10>auto pop-up stack</a> is not empty, then return
+   <var>document</var>'s <a href=#auto-pop-up-stack id=the-popup-attribute:auto-pop-up-stack-11>auto pop-up stack</a>'s last element.<li><p>Return null.</ol>
+
+  <p>To perform the <dfn id=pop-up-focusing-steps>pop-up focusing steps</dfn> for an <code id=the-popup-attribute:element-14><a data-x-internal=element href=https://dom.spec.whatwg.org/#interface-element>Element</a></code>
+  <var>subject</var>:</p>
+
+  <ol><li><p>Let <var>control</var> be the result of running <a href=#pop-up-focusable-area id=the-popup-attribute:pop-up-focusable-area>pop-up focusable area</a> given
+   <var>subject</var>.<li><p>If <var>control</var> is null, then return.<li><p>Run the <a id=the-popup-attribute:focusing-steps-2 href=interaction.html#focusing-steps>focusing steps</a> given <var>control</var>.<li><p>Let <var>topDocument</var> be the <a id=the-popup-attribute:active-document href=browsers.html#active-document>active document</a> of <var>control</var>'s
+   <a id=the-popup-attribute:node-document-6 href=https://dom.spec.whatwg.org/#concept-node-document data-x-internal=node-document>node document</a>'s <a href=browsers.html#concept-document-bc id=the-popup-attribute:concept-document-bc>browsing context</a>'s
+   <a id=the-popup-attribute:top-level-browsing-context href=browsers.html#top-level-browsing-context>top-level browsing context</a>.<li><p>If <var>control</var>'s <a id=the-popup-attribute:node-document-7 href=https://dom.spec.whatwg.org/#concept-node-document data-x-internal=node-document>node document</a>'s <a href=https://dom.spec.whatwg.org/#concept-document-origin id=the-popup-attribute:concept-document-origin data-x-internal=concept-document-origin>origin</a> is not the <a href=origin.html#same-origin id=the-popup-attribute:same-origin>same</a>
+   as the <a href=https://dom.spec.whatwg.org/#concept-document-origin id=the-popup-attribute:concept-document-origin-2 data-x-internal=concept-document-origin>origin</a> of <var>topDocument</var>, then
+   return.<li><p><a href=https://infra.spec.whatwg.org/#list-empty id=the-popup-attribute:list-empty data-x-internal=list-empty>Empty</a> <var>topDocument</var>'s
+   <a id=the-popup-attribute:autofocus-candidates href=interaction.html#autofocus-candidates>autofocus candidates</a>.<li><p>Set <var>topDocument</var>'s <a id=the-popup-attribute:autofocus-processed-flag href=interaction.html#autofocus-processed-flag>autofocus processed flag</a> to true.</ol>
+
+  <p>To get the <dfn id=pop-up-focusable-area>pop-up focusable area</dfn> given an element <var>subject</var>, perform the
+  following steps. They return an <code id=the-popup-attribute:element-15><a data-x-internal=element href=https://dom.spec.whatwg.org/#interface-element>Element</a></code> or null.</p>
+
+  <ol><li><p>If <var>subject</var> has the <code id=the-popup-attribute:attr-fe-autofocus><a href=interaction.html#attr-fe-autofocus>autofocus</a></code> attribute,
+   then return <var>subject</var>.<li>
+    <p>For each <var>node</var> in the <a id=the-popup-attribute:flat-tree-4 href=https://drafts.csswg.org/css-scoping/#flat-tree data-x-internal=flat-tree>flat tree</a> within <var>subject</var>:</p>
+
+    <ol><li><p>If <var>node</var> is a <code id=the-popup-attribute:the-dialog-element><a href=interactive-elements.html#the-dialog-element>dialog</a></code> element or <var>node</var>'s <code id=the-popup-attribute:attr-popup-39><a href=#attr-popup>popup</a></code> attribute is not in the <a href=#attr-popup-none-state id=the-popup-attribute:attr-popup-none-state-12>no pop-up state</a>, then continue without traversing into
+     the child nodes of <var>node</var>.<li><p>If <var>node</var> is not <a id=the-popup-attribute:focusable href=interaction.html#focusable>focusable</a>, then continue.<li><p>If <var>node</var> does not have the <code id=the-popup-attribute:attr-fe-autofocus-2><a href=interaction.html#attr-fe-autofocus>autofocus</a></code>
+     attribute, then continue.<li><p>Return <var>node</var>.</ol>
+   <li><p>Return null.</ol>
+
+  <h4 id=the-pop-up-target-attributes><span class=secno>6.11.1</span> The <dfn>pop-up target attributes</dfn><a href=#the-pop-up-target-attributes class=self-link></a></h4>
+
+  <p><a href=#attr-popup-target-supported-elements id=the-pop-up-target-attributes:attr-popup-target-supported-elements>Supported elements</a> may have the
+  following content attributes, known as the <a href=#the-pop-up-target-attributes id=the-pop-up-target-attributes:the-pop-up-target-attributes>pop-up target attributes</a>:</p>
+
+  <ul><li><p><dfn data-dfn-for=html-global id=attr-popup-toggle-target data-dfn-type=element-attr><code>popuptoggletarget</code></dfn><li><p><dfn data-dfn-for=html-global id=attr-popup-hide-target data-dfn-type=element-attr><code>popuphidetarget</code></dfn><li><p><dfn data-dfn-for=html-global id=attr-popup-show-target data-dfn-type=element-attr><code>popupshowtarget</code></dfn></ul>
+
+  <p>The <a href=#the-pop-up-target-attributes id=the-pop-up-target-attributes:the-pop-up-target-attributes-2>pop-up target attributes</a> allow certain types of buttons to show and hide
+  element with the <code id=the-pop-up-target-attributes:attr-popup><a href=#attr-popup>popup</a></code> attribute. If a pop-up target attribute is
+  specified, then that attribute's value must be the ID of element with the <code id=the-pop-up-target-attributes:attr-popup-2><a href=#attr-popup>popup</a></code> attribute.</p>
+
+  <div class=example>
+   <p>The following shows how <code id=the-pop-up-target-attributes:attr-popup-show-target><a href=#attr-popup-show-target>popupshowtarget</a></code> can be
+   used to open a pop-up:</p>
+
+   <pre><code class='html'><c- p>&lt;</c-><c- f>div</c-> <c- e>popup</c-><c- o>=</c-><c- s>auto</c-> <c- e>id</c-><c- o>=</c-><c- s>&quot;foo&quot;</c-><c- p>&gt;</c->
+  This is a pop-up!
+<c- p>&lt;/</c-><c- f>div</c-><c- p>&gt;</c->
+
+<c- p>&lt;</c-><c- f>button</c-> <c- e>popupshowtarget</c-><c- o>=</c-><c- s>&quot;foo&quot;</c-><c- p>&gt;</c->
+  Show a pop-up
+<c- p>&lt;/</c-><c- f>button</c-><c- p>&gt;</c-></code></pre>
+
+   <p>The following shows how <code id=the-pop-up-target-attributes:attr-popup-toggle-target><a href=#attr-popup-toggle-target>popuptoggletarget</a></code> can
+   open and close a manual pop-up, which can't be closed with light dismiss:</p>
+
+   <pre><code class='html'><c- p>&lt;</c-><c- f>div</c-> <c- e>popup</c-><c- o>=</c-><c- s>manual</c-> <c- e>id</c-><c- o>=</c-><c- s>&quot;foo&quot;</c-><c- p>&gt;</c->
+  This is a pop-up!
+<c- p>&lt;/</c-><c- f>div</c-><c- p>&gt;</c->
+
+<c- p>&lt;</c-><c- f>button</c-> <c- e>popuptoggletarget</c-><c- o>=</c-><c- s>&quot;foo&quot;</c-><c- p>&gt;</c->
+  Show or hide a pop-up
+<c- p>&lt;/</c-><c- f>button</c-><c- p>&gt;</c-></code></pre>
+  </div>
+
+  <p>The <a href=#the-pop-up-target-attributes id=the-pop-up-target-attributes:the-pop-up-target-attributes-3>pop-up target attributes</a> are only <dfn id=attr-popup-target-supported-elements>supported</dfn> on the following elements:</p>
+
+  <ul><li><p><code id=the-pop-up-target-attributes:the-button-element><a href=form-elements.html#the-button-element>button</a></code> elements<li><p><code id=the-pop-up-target-attributes:the-input-element><a href=input.html#the-input-element>input</a></code> elements in the <a href="input.html#button-state-(type=button)" id="the-pop-up-target-attributes:button-state-(type=button)">Button</a>
+   state.<li><p><code id=the-pop-up-target-attributes:the-input-element-2><a href=input.html#the-input-element>input</a></code> elements in the <a href="input.html#submit-button-state-(type=submit)" id="the-pop-up-target-attributes:submit-button-state-(type=submit)">Submit
+   Button</a> state.<li><p><code id=the-pop-up-target-attributes:the-input-element-3><a href=input.html#the-input-element>input</a></code> elements in the <a href="input.html#image-button-state-(type=image)" id="the-pop-up-target-attributes:image-button-state-(type=image)">Image
+   Button</a> state.<li><p><code id=the-pop-up-target-attributes:the-input-element-4><a href=input.html#the-input-element>input</a></code> elements in the <a href="input.html#reset-button-state-(type=reset)" id="the-pop-up-target-attributes:reset-button-state-(type=reset)">Reset
+   Button</a> state.</ul>
+
+  <a href=dom.html#concept-element-dom id=the-pop-up-target-attributes:concept-element-dom>DOM interface</a>:
+  <pre><code class='idl'><c- b>interface</c-> <c- b>mixin</c-> <dfn id='popuptargetelement' data-dfn-type='interface'><c- g>PopUpTargetElement</c-></dfn> {
+  [<a id='the-pop-up-target-attributes:cereactions' href='custom-elements.html#cereactions'><c- g>CEReactions</c-></a>] <c- b>attribute</c-> <c- b>DOMString</c->? <a href='#dom-popuptoggletarget' id='the-pop-up-target-attributes:dom-popuptoggletarget'><c- g>popUpToggleTarget</c-></a>;
+  [<a id='the-pop-up-target-attributes:cereactions-2' href='custom-elements.html#cereactions'><c- g>CEReactions</c-></a>] <c- b>attribute</c-> <c- b>DOMString</c->? <a href='#dom-popuphidetarget' id='the-pop-up-target-attributes:dom-popuphidetarget'><c- g>popUpHideTarget</c-></a>;
+  [<a id='the-pop-up-target-attributes:cereactions-3' href='custom-elements.html#cereactions'><c- g>CEReactions</c-></a>] <c- b>attribute</c-> <c- b>DOMString</c->? <a href='#dom-popupshowtarget' id='the-pop-up-target-attributes:dom-popupshowtarget'><c- g>popUpShowTarget</c-></a>;
+};</code></pre>
+
+  <p>The <dfn data-dfn-for=HTMLElement id=dom-popuptoggletarget data-dfn-type=attribute><code>popUpToggleTarget</code></dfn> IDL attribute must
+  <a id=the-pop-up-target-attributes:reflect href=common-dom-interfaces.html#reflect>reflect</a> the <code id=the-pop-up-target-attributes:attr-popup-toggle-target-2><a href=#attr-popup-toggle-target>popuptoggletarget</a></code>
+  attribute.</p>
+
+  <p>The <dfn data-dfn-for=HTMLElement id=dom-popuphidetarget data-dfn-type=attribute><code>popUpHideTarget</code></dfn> IDL attribute must <a id=the-pop-up-target-attributes:reflect-2 href=common-dom-interfaces.html#reflect>reflect</a>
+  the <code id=the-pop-up-target-attributes:attr-popup-hide-target><a href=#attr-popup-hide-target>popuphidetarget</a></code> attribute.</p>
+
+  <p>The <dfn data-dfn-for=HTMLElement id=dom-popupshowtarget data-dfn-type=attribute><code>popUpShowTarget</code></dfn> IDL attribute must <a id=the-pop-up-target-attributes:reflect-3 href=common-dom-interfaces.html#reflect>reflect</a>
+  the <code id=the-pop-up-target-attributes:attr-popup-show-target-2><a href=#attr-popup-show-target>popupshowtarget</a></code> attribute.</p>
+
+  <p>To run the <dfn id=pop-up-target-attribute-activation-behavior>pop-up target attribute activation behavior</dfn> given a <code id=the-pop-up-target-attributes:node><a data-x-internal=node href=https://dom.spec.whatwg.org/#interface-node>Node</a></code>
+  <var>node</var>:</p>
+
+  <ol><li><p>If <var>node</var> is <a href=form-control-infrastructure.html#concept-fe-disabled id=the-pop-up-target-attributes:concept-fe-disabled>disabled</a>, then
+   return.<li><p>If <var>node</var> is not <a href=#attr-popup-target-supported-elements id=the-pop-up-target-attributes:attr-popup-target-supported-elements-2>supported</a> by the <a href=#the-pop-up-target-attributes id=the-pop-up-target-attributes:the-pop-up-target-attributes-4>pop-up target
+   attributes</a>, then return.<li><p>Let <var>popUp</var> be <var>node</var>'s <a href=#pop-up-target-element id=the-pop-up-target-attributes:pop-up-target-element>pop-up target element</a>.<li><p>If <var>popUp</var> is null, then return.<li>
+    <p>If <var>node</var> doesn't have the <code id=the-pop-up-target-attributes:attr-popup-toggle-target-3><a href=#attr-popup-toggle-target>popuptoggletarget</a></code> attribute, then:</p>
+
+    <ol><li><p>If <var>node</var> has the <code id=the-pop-up-target-attributes:attr-popup-show-target-3><a href=#attr-popup-show-target>popupshowtarget</a></code>
+     attribute and <var>popUp</var>'s <a href=#pop-up-visibility-state id=the-pop-up-target-attributes:pop-up-visibility-state>pop-up visibility state</a> is <a href=#pop-up-showing-state id=the-pop-up-target-attributes:pop-up-showing-state>showing</a>, then return.<li><p>If <var>node</var> has the <code id=the-pop-up-target-attributes:attr-popup-hide-target-2><a href=#attr-popup-hide-target>popuphidetarget</a></code>
+     attribute and <var>popUp</var>'s <a href=#pop-up-visibility-state id=the-pop-up-target-attributes:pop-up-visibility-state-2>pop-up visibility state</a> is <a href=#pop-up-hidden-state id=the-pop-up-target-attributes:pop-up-hidden-state>hidden</a>, then return.<li><p>If <var>node</var> doesn't have the <code id=the-pop-up-target-attributes:attr-popup-show-target-4><a href=#attr-popup-show-target>popupshowtarget</a></code> attribute and <var>node</var> doesn't
+     have the <code id=the-pop-up-target-attributes:attr-popup-hide-target-3><a href=#attr-popup-hide-target>popuphidetarget</a></code> attribute, then
+     return.</ol>
+   <li>
+    <p>If <var>node</var> has a <a id=the-pop-up-target-attributes:form-owner href=form-control-infrastructure.html#form-owner>form owner</a> and <var>node</var> is in any of the
+    following states, then return:</p>
+
+    <ul><li><p><var>node</var> is a <code id=the-pop-up-target-attributes:the-button-element-2><a href=form-elements.html#the-button-element>button</a></code> element in the <a href=form-elements.html#attr-button-type-submit id=the-pop-up-target-attributes:attr-button-type-submit>submit state</a>.<li><p><var>node</var> is an <code id=the-pop-up-target-attributes:the-input-element-5><a href=input.html#the-input-element>input</a></code> element in the <a href="input.html#submit-button-state-(type=submit)" id="the-pop-up-target-attributes:submit-button-state-(type=submit)-2">submit state</a>.<li><p><var>node</var> is an <code id=the-pop-up-target-attributes:the-input-element-6><a href=input.html#the-input-element>input</a></code> element in the <a href="input.html#image-button-state-(type=image)" id="the-pop-up-target-attributes:image-button-state-(type=image)-2">image state</a>.</ul>
+   <li><p>If <var>popUp</var>'s <a href=#pop-up-visibility-state id=the-pop-up-target-attributes:pop-up-visibility-state-3>pop-up visibility state</a> is <a href=#pop-up-showing-state id=the-pop-up-target-attributes:pop-up-showing-state-2>showing</a>, then run the <a href=#hide-pop-up-algorithm id=the-pop-up-target-attributes:hide-pop-up-algorithm>hide pop-up algorithm</a>
+   given <var>popUp</var>, true, and false.<li>
+    <p>Otherwise:</p>
+
+    <ol><li><p>Set <var>popUp</var>'s <a href=#pop-up-invoker id=the-pop-up-target-attributes:pop-up-invoker>pop-up invoker</a> to <var>node</var>.<li><p>Run <a href=#show-pop-up id=the-pop-up-target-attributes:show-pop-up>show pop-up</a> given <var>popUp</var>.</ol>
+   </ol>
+
+  <p>To get the <dfn id=pop-up-target-element>pop-up target element</dfn> given a <code id=the-pop-up-target-attributes:node-2><a data-x-internal=node href=https://dom.spec.whatwg.org/#interface-node>Node</a></code> <var>node</var>, perform
+  the following steps. They return an <code id=the-pop-up-target-attributes:element><a data-x-internal=element href=https://dom.spec.whatwg.org/#interface-element>Element</a></code> or null.</p>
+
+  <ol><li><p>If <var>node</var> is not <a href=#attr-popup-target-supported-elements id=the-pop-up-target-attributes:attr-popup-target-supported-elements-3>supported</a>, then return null.<li><p>Let <var>idref</var> be null.<li><p>If <var>node</var> has the <code id=the-pop-up-target-attributes:attr-popup-toggle-target-4><a href=#attr-popup-toggle-target>popuptoggletarget</a></code> attribute, then set <var>idref</var>
+   to the value of <var>node</var>'s <code id=the-pop-up-target-attributes:attr-popup-toggle-target-5><a href=#attr-popup-toggle-target>popuptoggletarget</a></code> attribute.<li><p>Otherwise, if <var>node</var> has the <code id=the-pop-up-target-attributes:attr-popup-show-target-5><a href=#attr-popup-show-target>popupshowtarget</a></code> attribute, then set <var>idref</var> to
+   the value of <var>node</var>'s <code id=the-pop-up-target-attributes:attr-popup-show-target-6><a href=#attr-popup-show-target>popupshowtarget</a></code>
+   attribute.<li><p>Otherwise, if <var>node</var> has the <code id=the-pop-up-target-attributes:attr-popup-hide-target-4><a href=#attr-popup-hide-target>popuphidetarget</a></code> attribute, then set <var>idref</var> to
+   the value of <var>node</var>'s <code id=the-pop-up-target-attributes:attr-popup-hide-target-5><a href=#attr-popup-hide-target>popuphidetarget</a></code>
+   attribute.<li><p>If <var>idref</var> is null, then return null.<li><p>Let <var>popupElement</var> be the first <a href=https://dom.spec.whatwg.org/#concept-element id=the-pop-up-target-attributes:concept-element data-x-internal=concept-element>element</a>, in
+   <a id=the-pop-up-target-attributes:tree-order href=https://dom.spec.whatwg.org/#concept-tree-order data-x-internal=tree-order>tree order</a>, within <var>node</var>'s <a id=the-pop-up-target-attributes:root href=https://dom.spec.whatwg.org/#concept-tree-root data-x-internal=root>root</a>'s <a href=https://dom.spec.whatwg.org/#concept-tree-descendant id=the-pop-up-target-attributes:descendant data-x-internal=descendant>descendants</a>, whose <a href=https://dom.spec.whatwg.org/#concept-id id=the-pop-up-target-attributes:concept-id data-x-internal=concept-id>ID</a> is
+   <var>idref</var>; otherwise, if there is no such <a href=https://dom.spec.whatwg.org/#concept-element id=the-pop-up-target-attributes:concept-element-2 data-x-internal=concept-element>element</a>,
+   null.<li><p>If <var>popupElement</var> is null, then return null.<li><p>If <var>popupElement</var>'s <code id=the-pop-up-target-attributes:attr-popup-3><a href=#attr-popup>popup</a></code> attribute is in the
+   <a href=#attr-popup-none-state id=the-pop-up-target-attributes:attr-popup-none-state>no pop-up state</a>, then return null.<li><p>Return <var>popupElement</var>.</ol>
+
+  <h4 id=pop-up-light-dismiss><span class=secno>6.11.2</span> <dfn>Pop-up light dismiss</dfn><a href=#pop-up-light-dismiss class=self-link></a></h4>
+
+  <div class=note>
+   <p>"Light dismiss" means that pressing the <kbd>Esc</kbd> key or clicking outside of a pop-up
+   whose <code id=pop-up-light-dismiss:attr-popup><a href=#attr-popup>popup</a></code> attribute is in the <a href=#attr-popup-auto-state id=pop-up-light-dismiss:attr-popup-auto-state>auto</a> or <a href=#attr-popup-hint-state id=pop-up-light-dismiss:attr-popup-hint-state>hint</a>
+   states will close the pop-up.</p>
+  </div>
+
+  <p>When a <code id=pop-up-light-dismiss:document><a href=dom.html#document>Document</a></code> <var>document</var> receives an <code id=pop-up-light-dismiss:event><a data-x-internal=event href=https://dom.spec.whatwg.org/#interface-event>Event</a></code>
+  <var>event</var> in the capture phase:</p>
+
+  <ol><li><p>Let <var>topmostPopup</var> be the result of running <a href=#topmost-pop-up-auto-or-hint id=pop-up-light-dismiss:topmost-pop-up-auto-or-hint>topmost pop-up auto or
+   hint</a> given <var>document</var>.<li><p>If <var>topmostPopup</var> is null, then return.<li><p>Let <var>target</var> be <var>event</var>'s <a href=https://dom.spec.whatwg.org/#concept-event-target id=pop-up-light-dismiss:concept-event-target data-x-internal=concept-event-target>target</a>.<li>
+    <p>If <var>event</var> is a <code id=pop-up-light-dismiss:event-mousedown><a data-x-internal=event-mousedown href=https://w3c.github.io/uievents/#event-type-mousedown>mousedown</a></code> event, then:</p>
+
+    <ol><li><p>Set <var>document</var>'s <a href=#pop-up-mousedown-target id=pop-up-light-dismiss:pop-up-mousedown-target>pop-up mousedown target</a> to the result of running
+     <a href=#nearest-open-ancestral-pop-up id=pop-up-light-dismiss:nearest-open-ancestral-pop-up>nearest open ancestral pop-up</a> given <var>target</var> and "<code>inclusive</code>".</ol>
+   <li>
+    <p>If <var>event</var> is a <code id=pop-up-light-dismiss:event-mouseup><a data-x-internal=event-mouseup href=https://w3c.github.io/uievents/#event-type-mouseup>mouseup</a></code> event, then:</p>
+
+    <ol><li><p>Let <var>ancestor</var> be the result of running <a href=#nearest-open-ancestral-pop-up id=pop-up-light-dismiss:nearest-open-ancestral-pop-up-2>nearest open ancestral
+     pop-up</a> given <var>target</var> and "<code>inclusive</code>".<li><p>Let <var>sameTarget</var> be true if <var>ancestor</var> is <var>document</var>'s
+     <a href=#pop-up-mousedown-target id=pop-up-light-dismiss:pop-up-mousedown-target-2>pop-up mousedown target</a>.<li><p>Set <var>document</var>'s <a href=#pop-up-mousedown-target id=pop-up-light-dismiss:pop-up-mousedown-target-3>pop-up mousedown target</a> to null.<li><p>If <var>sameTarget</var> is true, then run <a href=#hide-all-pop-ups-until id=pop-up-light-dismiss:hide-all-pop-ups-until>hide
+     all pop-ups until</a> given <var>ancestor</var>, false, false, and true.</ol>
+   <li>
+    <p>If <var>event</var> is a <code id=pop-up-light-dismiss:event-keydown><a data-x-internal=event-keydown href=https://w3c.github.io/uievents/#event-type-keydown>keydown</a></code> event for the
+    <kbd><kbd>Escape</kbd></kbd> key, then:</p>
+
+    <ol><li><p>Run the <a href=#hide-pop-up-algorithm id=pop-up-light-dismiss:hide-pop-up-algorithm>hide pop-up algorithm</a> given <var>topmostPopup</var>, true, and
+     false.</ol>
+   </ol>
+
+  <h4 id=the-defaultopen-attribute><span class=secno>6.11.3</span> The <code id=the-defaultopen-attribute:attr-defaultopen><a href=#attr-defaultopen>defaultopen</a></code> attribute<a href=#the-defaultopen-attribute class=self-link></a></h4>
+
+  <p>All elements may have the <dfn data-dfn-for=html-global id=attr-defaultopen data-dfn-type=element-attr><code>defaultopen</code></dfn> content attribute set. When specified on an
+  element whose <code id=the-defaultopen-attribute:attr-popup><a href=#attr-popup>popup</a></code> attribute is not in the <a href=#attr-popup-none-state id=the-defaultopen-attribute:attr-popup-none-state>no pop-up state</a>, it makes the element shown automatically
+  when the page is loaded. <code id=the-defaultopen-attribute:attr-defaultopen-2><a href=#attr-defaultopen>defaultopen</a></code> is a <a id=the-defaultopen-attribute:boolean-attribute href=common-microsyntaxes.html#boolean-attribute>boolean
+  attribute</a>.</p>
+
+  <p>The <dfn data-dfn-for=HTMLElement id=dom-defaultopen data-dfn-type=attribute><code>defaultOpen</code></dfn>
+  IDL attribute must <a id=the-defaultopen-attribute:reflect href=common-dom-interfaces.html#reflect>reflect</a> the <code id=the-defaultopen-attribute:attr-defaultopen-3><a href=#attr-defaultopen>defaultopen</a></code>
+  content attribute.</p>
+
+  <h4 id=the-anchor-attribute><span class=secno>6.11.4</span> The <code id=the-anchor-attribute:attr-anchor><a href=#attr-anchor>anchor</a></code> attribute<a href=#the-anchor-attribute class=self-link></a></h4>
+
+  <p>All elements may have the <dfn data-dfn-for=html-global id=attr-anchor data-dfn-type=element-attr><code>anchor</code></dfn> attribute set. When specified on an element whose <code id=the-anchor-attribute:attr-popup><a href=#attr-popup>popup</a></code> attribute is not in the <a href=#attr-popup-none-state id=the-anchor-attribute:attr-popup-none-state>no
+  pop-up state</a>, the value of the attribute is used as an ID to refer to another element. If
+  the other element's <code id=the-anchor-attribute:attr-popup-2><a href=#attr-popup>popup</a></code> attribute is also not in the <a href=#attr-popup-none-state id=the-anchor-attribute:attr-popup-none-state-2>no pop-up state</a>, then the other element is considered to be
+  a parent in the pop-up hierarchy. This means, for example, that if the element and parent
+  element's <code id=the-anchor-attribute:attr-popup-3><a href=#attr-popup>popup</a></code> attributes are in the <a href=#attr-popup-auto-state id=the-anchor-attribute:attr-popup-auto-state>auto state</a>, then both of them can be open at the same time
+  even though only one <a href=#attr-popup-auto-state id=the-anchor-attribute:attr-popup-auto-state-2>auto</a> pop-up is supposed to be
+  open at a time.</p>
+
+
+  <nav><a href=dnd.html>← 6.10 Drag and drop</a> — <a href=./>Table of Contents</a> — <a href=browsers.html>7 Loading web pages →</a></nav>

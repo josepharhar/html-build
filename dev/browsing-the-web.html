@@ -1,0 +1,167 @@
+<!DOCTYPE html><html class=split lang=en-US-x-hixie><script src=/link-fixup.js defer=""></script><meta charset=utf-8><meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name=viewport><title>HTML Standard, Edition for Web Developers</title><meta content=#3c790a name=theme-color><link rel=stylesheet href=https://resources.whatwg.org/standard-shared-with-dev.css crossorigin=""><link rel=icon href=https://resources.whatwg.org/logo.svg crossorigin=""><link rel=stylesheet href=/dev/styles.css crossorigin=""><script>
+   function toggleStatus(div) {
+     div.parentNode.classList.toggle('wrapped');
+   }
+   function setLinkFragment(link) {
+     link.hash = location.hash;
+   }
+  </script><body>
+  <script async="" src=/dev/search.js></script>
+  
+  
+  
+  <header id=head class="head with-buttons">
+   <a href=https://whatwg.org/ class=logo><img width=100 alt=WHATWG crossorigin="" src=https://resources.whatwg.org/logo.svg height=100></a>
+   
+   <hgroup><h1><a rel=home href=/dev/>HTML: The Living Standard</a></h1><h2 id=dev-edition-h2 class="no-num no-toc">Edition for Web Developers — Last Updated <span class=pubdate>10 October 2022</span></h2></hgroup>
+   
+
+   <div id=search>
+    <input placeholder="Search. Press '/'" autocomplete=off name=query id=query type=search>
+    <ol id=results></ol>
+   </div>
+  </header>
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+  <nav><a href=history.html>← 7.8 Session history and navigation</a> — <a href=./>Table of Contents</a> — <a href=webappapis.html>8 Web application APIs →</a></nav><ol class=toc><li><ol><li><a href=browsing-the-web.html#browsing-the-web><span class=secno>7.9</span> Browsing the web</a><ol><li><a href=browsing-the-web.html#history-traversal><span class=secno>7.9.1</span> History traversal</a><ol><li><a href=browsing-the-web.html#the-popstateevent-interface><span class=secno>7.9.1.1</span> The <code>PopStateEvent</code> interface</a><li><a href=browsing-the-web.html#the-hashchangeevent-interface><span class=secno>7.9.1.2</span> The <code>HashChangeEvent</code> interface</a><li><a href=browsing-the-web.html#the-pagetransitionevent-interface><span class=secno>7.9.1.3</span> The <code>PageTransitionEvent</code> interface</a></ol><li><a href=browsing-the-web.html#unloading-documents><span class=secno>7.9.2</span> Unloading documents</a><ol><li><a href=browsing-the-web.html#the-beforeunloadevent-interface><span class=secno>7.9.2.1</span> The <code>BeforeUnloadEvent</code> interface</a></ol><li><a href=browsing-the-web.html#the-x-frame-options-header><span class=secno>7.9.3</span> The `<code>X-Frame-Options</code>` header</a><li><a href=browsing-the-web.html#the-refresh-header><span class=secno>7.9.4</span> The `<code>Refresh</code>` header</a></ol></ol></ol><h3 id=browsing-the-web><span class=secno>7.9</span> Browsing the web<a href=#browsing-the-web class=self-link></a></h3>
+
+  
+
+
+
+  <h4 id=history-traversal><span class=secno>7.9.1</span> History traversal<a href=#history-traversal class=self-link></a></h4> 
+
+  
+
+
+  <h5 id=the-popstateevent-interface><span class=secno>7.9.1.1</span> The <code>PopStateEvent</code> interface<a href=#the-popstateevent-interface class=self-link></a></h5><div class="mdn-anno wrapped"><button onclick=toggleStatus(this) class=mdn-anno-btn><b title="Support in all current engines." class=all-engines-flag>✔</b><span>MDN</span></button><div class=feature><p><a href=https://developer.mozilla.org/en-US/docs/Web/API/PopStateEvent title="PopStateEvent is an interface for the popstate event.">PopStateEvent</a><p class=all-engines-text>Support in all current engines.<div class=support><span class="firefox yes"><span>Firefox</span><span>4+</span></span><span class="safari yes"><span>Safari</span><span>6+</span></span><span class="chrome yes"><span>Chrome</span><span>4+</span></span><hr><span class="opera yes"><span>Opera</span><span>12.1+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span><hr><span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>Internet Explorer</span><span>10+</span></span><hr><span class="firefox_android unknown"><span>Firefox Android</span><span>?</span></span><span class="safari_ios unknown"><span>Safari iOS</span><span>?</span></span><span class="chrome_android unknown"><span>Chrome Android</span><span>?</span></span><span class="webview_android unknown"><span>WebView Android</span><span>?</span></span><span class="samsunginternet_android unknown"><span>Samsung Internet</span><span>?</span></span><span class="opera_android yes"><span>Opera Android</span><span>12.1+</span></span></div></div></div>
+
+  
+
+  <dl class=domintro><dt><code><var>event</var>.<span id=dom-popstateevent-state>state</span></code><dd><p>Returns a copy of the information that was provided to <code id=the-popstateevent-interface:dom-history-pushstate><a href=history.html#dom-history-pushstate>pushState()</a></code> or <code id=the-popstateevent-interface:dom-history-replacestate><a href=history.html#dom-history-replacestate>replaceState()</a></code>.</dl>
+
+  
+
+
+  <h5 id=the-hashchangeevent-interface><span class=secno>7.9.1.2</span> The <code>HashChangeEvent</code> interface<a href=#the-hashchangeevent-interface class=self-link></a></h5><div class="mdn-anno wrapped"><button onclick=toggleStatus(this) class=mdn-anno-btn><b title="Support in all current engines." class=all-engines-flag>✔</b><span>MDN</span></button><div class=feature><p><a href=https://developer.mozilla.org/en-US/docs/Web/API/HashChangeEvent title="The HashChangeEvent interface represents events that fire when the fragment identifier of the URL has changed.">HashChangeEvent</a><p class=all-engines-text>Support in all current engines.<div class=support><span class="firefox yes"><span>Firefox</span><span>3.6+</span></span><span class="safari yes"><span>Safari</span><span>5+</span></span><span class="chrome yes"><span>Chrome</span><span>8+</span></span><hr><span class="opera yes"><span>Opera</span><span>10.6+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span><hr><span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>Internet Explorer</span><span>8+</span></span><hr><span class="firefox_android unknown"><span>Firefox Android</span><span>?</span></span><span class="safari_ios yes"><span>Safari iOS</span><span>5+</span></span><span class="chrome_android unknown"><span>Chrome Android</span><span>?</span></span><span class="webview_android unknown"><span>WebView Android</span><span>?</span></span><span class="samsunginternet_android unknown"><span>Samsung Internet</span><span>?</span></span><span class="opera_android yes"><span>Opera Android</span><span>11+</span></span></div></div></div>
+
+  
+
+  <dl class=domintro><dt><code><var>event</var>.<span id=dom-hashchangeevent-oldurl>oldURL</span></code><dd>
+    <p>Returns the <a id=the-hashchangeevent-interface:url href=https://url.spec.whatwg.org/#concept-url data-x-internal=url>URL</a> of the <a id=the-hashchangeevent-interface:session-history-entry href=history.html#session-history-entry>session history entry</a> that was previously
+    current.</p>
+   <dt><code><var>event</var>.<span id=dom-hashchangeevent-newurl>newURL</span></code><dd>
+    <p>Returns the <a id=the-hashchangeevent-interface:url-2 href=https://url.spec.whatwg.org/#concept-url data-x-internal=url>URL</a> of the <a id=the-hashchangeevent-interface:session-history-entry-2 href=history.html#session-history-entry>session history entry</a> that is now
+    current.</p>
+   </dl>
+
+  
+
+
+  <h5 id=the-pagetransitionevent-interface><span class=secno>7.9.1.3</span> The <code>PageTransitionEvent</code> interface<a href=#the-pagetransitionevent-interface class=self-link></a></h5><div class="mdn-anno wrapped"><button onclick=toggleStatus(this) class=mdn-anno-btn><b title="Support in all current engines." class=all-engines-flag>✔</b><span>MDN</span></button><div class=feature><p><a href=https://developer.mozilla.org/en-US/docs/Web/API/PageTransitionEvent title="The PageTransitionEvent event object is available inside handler functions for the pageshow and pagehide events, fired when a document is being loaded or unloaded.">PageTransitionEvent</a><p class=all-engines-text>Support in all current engines.<div class=support><span class="firefox yes"><span>Firefox</span><span>1.5+</span></span><span class="safari yes"><span>Safari</span><span>5+</span></span><span class="chrome yes"><span>Chrome</span><span>4+</span></span><hr><span class="opera unknown"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span><hr><span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>Internet Explorer</span><span>11</span></span><hr><span class="firefox_android unknown"><span>Firefox Android</span><span>?</span></span><span class="safari_ios yes"><span>Safari iOS</span><span>4+</span></span><span class="chrome_android unknown"><span>Chrome Android</span><span>?</span></span><span class="webview_android yes"><span>WebView Android</span><span>37+</span></span><span class="samsunginternet_android unknown"><span>Samsung Internet</span><span>?</span></span><span class="opera_android unknown"><span>Opera Android</span><span>?</span></span></div></div></div>
+
+  
+
+  <dl class=domintro><dt><code><var>event</var>.<span id=dom-pagetransitionevent-persisted>persisted</span></code><dd>
+    <p>For the <code id=the-pagetransitionevent-interface:event-pageshow><a href=indices.html#event-pageshow>pageshow</a></code> event, returns false if the page is
+    newly being loaded (and the <code id=the-pagetransitionevent-interface:event-load><a href=indices.html#event-load>load</a></code> event will fire). Otherwise,
+    returns true.</p>
+
+    <p>For the <code id=the-pagetransitionevent-interface:event-pagehide><a href=indices.html#event-pagehide>pagehide</a></code> event, returns false if the page is
+    going away for the last time. Otherwise, returns true, meaning that the page might be reused if
+    the user navigates back to this page (if the <code>Document</code>'s <i>salvageable</i> state stays true). </p>
+
+    <p>Things that can cause the page to be unsalvageable include:</p>
+
+    <ul class=brief><li>The user agent decided to not keep the <code>Document</code> alive in a <a id=the-pagetransitionevent-interface:session-history-entry href=history.html#session-history-entry>session
+     history entry</a> after <span>unload</span><li>Having <code id=the-pagetransitionevent-interface:the-iframe-element><a href=iframe-embed-object.html#the-iframe-element>iframe</a></code>s that are not <i>salvageable</i><li>Active <code id=the-pagetransitionevent-interface:websocket-2><a data-x-internal=websocket-2 href=https://websockets.spec.whatwg.org/#websocket>WebSocket</a></code> objects<li><span>Aborting a <code>Document</code></span></ul>
+   </dl>
+
+  
+
+  <h4 id=unloading-documents><span class=secno>7.9.2</span> Unloading documents<a href=#unloading-documents class=self-link></a></h4>
+
+  
+
+
+
+  <h5 id=the-beforeunloadevent-interface><span class=secno>7.9.2.1</span> The <code>BeforeUnloadEvent</code> interface<a href=#the-beforeunloadevent-interface class=self-link></a></h5><div class="mdn-anno wrapped"><button onclick=toggleStatus(this) class=mdn-anno-btn><b title="Support in all current engines." class=all-engines-flag>✔</b><span>MDN</span></button><div class=feature><p><a href=https://developer.mozilla.org/en-US/docs/Web/API/BeforeUnloadEvent title="BeforeUnloadEvent is an interface for the beforeunload event.">BeforeUnloadEvent</a><p class=all-engines-text>Support in all current engines.<div class=support><span class="firefox yes"><span>Firefox</span><span>1.5+</span></span><span class="safari yes"><span>Safari</span><span>7+</span></span><span class="chrome yes"><span>Chrome</span><span>30+</span></span><hr><span class="opera unknown"><span>Opera</span><span>?</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span><hr><span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>Internet Explorer</span><span>4+</span></span><hr><span class="firefox_android unknown"><span>Firefox Android</span><span>?</span></span><span class="safari_ios unknown"><span>Safari iOS</span><span>?</span></span><span class="chrome_android unknown"><span>Chrome Android</span><span>?</span></span><span class="webview_android yes"><span>WebView Android</span><span>37+</span></span><span class="samsunginternet_android yes"><span>Samsung Internet</span><span>3.0+</span></span><span class="opera_android unknown"><span>Opera Android</span><span>?</span></span></div></div></div>
+
+  
+
+  <p class=note>There are no <code>BeforeUnloadEvent</code>-specific initialization methods.</p>
+
+  <p>The <code>BeforeUnloadEvent</code> interface is a legacy interface which allows <span>prompting to unload</span> to be controlled not only by canceling the
+  event, but by setting the <code>returnValue</code>
+  attribute to a value besides the empty string. Authors should use the <code id=the-beforeunloadevent-interface:dom-event-preventdefault><a data-x-internal=dom-event-preventdefault href=https://dom.spec.whatwg.org/#dom-event-preventdefault>preventDefault()</a></code> method, or other means of canceling
+  events, instead of using <code>returnValue</code>.</p>
+
+  
+
+
+  
+
+  <h4 id=the-x-frame-options-header><span class=secno>7.9.3</span> The `<code id=the-x-frame-options-header:x-frame-options><a href=#x-frame-options>X-Frame-Options</a></code>` header<a href=#the-x-frame-options-header class=self-link></a></h4><div class="mdn-anno wrapped"><button onclick=toggleStatus(this) class=mdn-anno-btn><b title="Support in all current engines." class=all-engines-flag>✔</b><span>MDN</span></button><div class=feature><p><a href=https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options title="The X-Frame-Options HTTP response header can be used to indicate whether or not a browser should be allowed to render a page in a <frame>, <iframe>, <embed> or <object>. Sites can use this to avoid click-jacking attacks, by ensuring that their content is not embedded into other sites.">Headers/X-Frame-Options</a><p class=all-engines-text>Support in all current engines.<div class=support><span class="firefox yes"><span>Firefox</span><span>4+</span></span><span class="safari yes"><span>Safari</span><span>4+</span></span><span class="chrome yes"><span>Chrome</span><span>4+</span></span><hr><span class="opera yes"><span>Opera</span><span>10.5+</span></span><span class="edge_blink yes"><span>Edge</span><span>79+</span></span><hr><span class="edge yes"><span>Edge (Legacy)</span><span>12+</span></span><span class="ie yes"><span>Internet Explorer</span><span>8+</span></span><hr><span class="firefox_android yes"><span>Firefox Android</span><span>Yes</span></span><span class="safari_ios yes"><span>Safari iOS</span><span>Yes</span></span><span class="chrome_android yes"><span>Chrome Android</span><span>Yes</span></span><span class="webview_android unknown"><span>WebView Android</span><span>?</span></span><span class="samsunginternet_android unknown"><span>Samsung Internet</span><span>?</span></span><span class="opera_android unknown"><span>Opera Android</span><span>?</span></span></div></div></div>
+
+  <p>The `<dfn id=x-frame-options data-dfn-type=http-header><code>X-Frame-Options</code></dfn>` HTTP response header is a legacy way
+  of controlling whether and how a <code>Document</code> may be loaded inside of a <a id=the-x-frame-options-header:child-browsing-context href=browsers.html#child-browsing-context>child
+  browsing context</a>. It is obsoleted by the <code id=the-x-frame-options-header:frame-ancestors-directive><a data-x-internal=frame-ancestors-directive href=https://w3c.github.io/webappsec-csp/#frame-ancestors>frame-ancestors</a></code> CSP directive, which provides more granular control over the
+  same situations. It was originally defined in <cite>HTTP Header Field X-Frame-Options</cite>, but
+  the definition here supersedes that document. <a href=references.html#refsCSP>[CSP]</a> <a href=references.html#refsRFC7034>[RFC7034]</a>
+
+  <p class=note>In particular, <cite>HTTP Header Field X-Frame-Options</cite> specified an `<code>ALLOW-FROM</code>` variant of the header, but that is not to be implemented.</p>
+
+  <p class=note><span>If</span> both
+  a CSP <code id=the-x-frame-options-header:frame-ancestors-directive-2><a data-x-internal=frame-ancestors-directive href=https://w3c.github.io/webappsec-csp/#frame-ancestors>frame-ancestors</a></code> directive and an
+  `<code id=the-x-frame-options-header:x-frame-options-2><a href=#x-frame-options>X-Frame-Options</a></code>` header are used in the same <a href=https://fetch.spec.whatwg.org/#concept-response id=the-x-frame-options-header:concept-response data-x-internal=concept-response>response</a>, then `<code id=the-x-frame-options-header:x-frame-options-3><a href=#x-frame-options>X-Frame-Options</a></code>` is ignored.</p>
+
+  <p>For web developers and conformance checkers, its value <a href=https://fetch.spec.whatwg.org/#abnf id=the-x-frame-options-header:header-abnf data-x-internal=header-abnf>ABNF</a>
+  is:</p>
+
+  <pre><code class='abnf'><c- nc>X-Frame-Options</c-> <c- o>=</c-> <c- l>&quot;DENY&quot;</c-> <c- o>/</c-> <c- l>&quot;SAMEORIGIN&quot;</c-></code></pre>
+
+  
+
+  <div class=example>
+   <p>The following table illustrates the processing of various values for the header, including
+   non-conformant ones:</p>
+
+   <table class=data><thead><tr><th>`<code id=the-x-frame-options-header:x-frame-options-4><a href=#x-frame-options>X-Frame-Options</a></code>`<th>Valid<th>Result<tbody><tr><td>`<code>DENY</code>`<td>✅<td>embedding disallowed<tr><td>`<code>SAMEORIGIN</code>`<td>✅<td>same-origin embedding allowed<tr><td>`<code>INVALID</code>`<td>❌<td>embedding allowed<tr><td>`<code>ALLOWALL</code>`<td>❌<td>embedding allowed<tr><td>`<code>ALLOW-FROM=https://example.com/</code>`<td>❌<td>embedding allowed (from anywhere)</table>
+  </div>
+
+  <div class=example>
+   <p>The following table illustrates how various non-conformant cases involving multiple values are
+   processed:</p>
+
+   <table class=data><thead><tr><th>`<code id=the-x-frame-options-header:x-frame-options-5><a href=#x-frame-options>X-Frame-Options</a></code>`<th>Result<tbody><tr><td>`<code>SAMEORIGIN, SAMEORIGIN</code>`<td>same-origin embedding allowed<tr><td>`<code>SAMEORIGIN, DENY</code>`<td>embedding disallowed<tr><td>`<code>SAMEORIGIN,</code>`<td>embedding disallowed<tr><td>`<code>SAMEORIGIN, ALLOWALL</code>`<td>embedding disallowed<tr><td>`<code>SAMEORIGIN, INVALID</code>`<td>embedding disallowed<tr><td>`<code>ALLOWALL, INVALID</code>`<td>embedding disallowed<tr><td>`<code>ALLOWALL,</code>`<td>embedding disallowed<tr><td>`<code>INVALID, INVALID</code>`<td>embedding allowed</table>
+
+   <p>The same results are obtained whether the values are delivered in a single header whose value is comma-delimited,
+   or in multiple headers.</p>
+  </div>
+
+
+  <h4 id=the-refresh-header><span class=secno>7.9.4</span> The `<code id=the-refresh-header:refresh><a href=#refresh>Refresh</a></code>` header<a href=#the-refresh-header class=self-link></a></h4>
+
+  <p>The `<dfn id=refresh data-dfn-type=http-header><code>Refresh</code></dfn>` HTTP response header is the HTTP-equivalent
+  to a <code id=the-refresh-header:the-meta-element><a href=semantics.html#the-meta-element>meta</a></code> element with an <code id=the-refresh-header:attr-meta-http-equiv><a href=semantics.html#attr-meta-http-equiv>http-equiv</a></code>
+  attribute in the <a href=semantics.html#attr-meta-http-equiv-refresh id=the-refresh-header:attr-meta-http-equiv-refresh>Refresh state</a>. It takes <a href=semantics.html#conformance-attr-meta-http-equiv-refresh>the same value</a> and works largely the same.
+  Its processing model is detailed in <span>create and
+  initialize a <code>Document</code> object</span>.
+  
+
+
+
+  <nav><a href=history.html>← 7.8 Session history and navigation</a> — <a href=./>Table of Contents</a> — <a href=webappapis.html>8 Web application APIs →</a></nav>
